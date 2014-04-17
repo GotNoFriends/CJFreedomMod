@@ -55,9 +55,7 @@ public class TFM_ServerListener implements Listener
     public void onServerPing(ServerListPingEvent event)
     {
         final String ip = event.getAddress().getHostAddress();
-        event.setMotd(TFM_Util.randomChatColor() + "Total" + TFM_Util.randomChatColor() + "Freedom " + ChatColor.DARK_GRAY + "-" + TFM_Util.randomChatColor() + " Bukkit v" + TFM_ServerInterface.getVersion());
-
-
+        event.setMotd(TFM_Util.randomChatColor() + "CJ" + TFM_Util.randomChatColor() + "Freedom " + ChatColor.DARK_GRAY + "-" + TFM_Util.randomChatColor() + " CraftBukkit v" + TFM_ServerInterface.getVersion());
 
         if (TFM_BanManager.getInstance().isIpBanned(ip))
         {
