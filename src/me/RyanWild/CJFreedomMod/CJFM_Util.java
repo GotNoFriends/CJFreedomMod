@@ -26,49 +26,21 @@ public class CJFM_Util
     public static final List<String> DEVELOPERS = Arrays.asList("Madgeek1450", "DarthSalamon", "wild1145", "Paldiu", "MrPorkSausage", "Camzie99");
 
 
-   /* private CoreProtectAPI getCoreProtect()
-    {
-        Plugin plugin = getServer().getPluginManager().getPlugin("CoreProtect");
+    /* 
 
-        if (plugin == null || !(plugin instanceof CoreProtect))
-        {
-            return null;
-        }
+     public static void updateDatabase(String SQLquery) throws SQLException
+     {
+     Connection c = mySQL.openConnection();
+     Statement statement = c.createStatement();
+     statement.executeUpdate(SQLquery);
+     }
 
-        CoreProtectAPI CoreProtect = ((CoreProtect) plugin).getAPI();
-        if (CoreProtect.APIVersion() < 2)
-        {
-            return null;
-        }
-        return CoreProtect;
-    }
-
-    public static void updateDatabase(String SQLquery) throws SQLException
-    {
-        Connection c = mySQL.openConnection();
-        Statement statement = c.createStatement();
-        statement.executeUpdate(SQLquery);
-    }
-
-    public void getValueFromDB(String SQLquery) throws SQLException
-    {
-        Connection c = mySQL.openConnection();
-        Statement statement = c.createStatement();
-        ResultSet res = statement.executeQuery(SQLquery);
-        res.next();
-    }
-*/
-    public static void loadDonatorConfig()
-    {
-        try
-        {
-            CJFM_DonatorList.backupSavedList();
-            CJFM_DonatorList.loadDonatorList();
-        }
-        catch (Exception ex)
-        {
-            TFM_Log.severe("Error loading donator list: " + ex.getMessage());
-        }
-    }
-
+     public void getValueFromDB(String SQLquery) throws SQLException
+     {
+     Connection c = mySQL.openConnection();
+     Statement statement = c.createStatement();
+     ResultSet res = statement.executeQuery(SQLquery);
+     res.next();
+     }
+     */
 }

@@ -1,4 +1,4 @@
-package me.RyanWild.CJFreedomMod;
+package me.RyanWild.CJFreedomMod.World;
 
 import me.RyanWild.CJFreedomMod.CJFM_DonatorList;
 import java.util.ArrayList;
