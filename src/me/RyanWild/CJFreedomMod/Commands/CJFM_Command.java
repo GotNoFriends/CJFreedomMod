@@ -3,7 +3,6 @@ package me.RyanWild.CJFreedomMod.Commands;
 import java.util.List;
 import me.RyanWild.CJFreedomMod.CJFM_DonatorList;
 import me.StevenLawson.TotalFreedomMod.Commands.AdminLevel;
-import me.RyanWild.CJFreedomMod.Commands.CommandPermissions;
 import me.StevenLawson.TotalFreedomMod.Commands.PlayerNotFoundException;
 import me.StevenLawson.TotalFreedomMod.Commands.SourceType;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
