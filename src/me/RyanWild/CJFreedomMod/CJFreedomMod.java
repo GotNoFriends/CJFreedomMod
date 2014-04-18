@@ -1,6 +1,6 @@
 package me.RyanWild.CJFreedomMod;
 
-import me.RyanWild.CJFreedomMod.Commands.CJFM_Command;
+import me.RyanWild.CJFreedomMod.Commands.CJFM_Commands;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.plugin;

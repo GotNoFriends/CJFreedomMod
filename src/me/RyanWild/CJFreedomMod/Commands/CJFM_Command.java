@@ -1,13 +1,9 @@
 package me.RyanWild.CJFreedomMod.Commands;
 
 import java.util.List;
-import me.RyanWild.CJFreedomMod.CJFM_DonatorList;
-import me.StevenLawson.TotalFreedomMod.Commands.AdminLevel;
-import me.StevenLawson.TotalFreedomMod.Commands.PlayerNotFoundException;
-import me.StevenLawson.TotalFreedomMod.Commands.SourceType;
-import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
+import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.ChatColor;
@@ -25,7 +21,7 @@ public abstract class CJFM_Command
 
     public CJFM_Command()
     {
-    }      
+    }
 
     abstract public boolean run(final CommandSender sender, final Player sender_p, final Command cmd, final String commandLabel, final String[] args, final boolean senderIsConsole);
 
@@ -72,19 +68,11 @@ public abstract class CJFM_Command
             {
                 is_senior = TFM_AdminList.isSeniorAdmin(this.commandSender);
             }
-            
-            boolean is_donator = CJFM_DonatorList.isUserDonator(this.commandSender);
-            boolean is_srdonator = false;
-            if (is_donator)
-            {
-                is_srdonator = CJFM_DonatorList.isSeniorDonator(this.commandSender);
-            }
 
             AdminLevel level = permissions.level();
-            DonatorLevel dlevel = permissions.dlevel();
             SourceType source = permissions.source();
             boolean block_host_console = permissions.block_host_console();
-            
+
             Player sender_p = null;
             if (this.commandSender instanceof Player)
             {
@@ -97,12 +85,10 @@ public abstract class CJFM_Command
                 {
                     return false;
                 }
-                
                 else if (level == AdminLevel.SENIOR && !is_senior)
                 {
                     return false;
                 }
-                
                 else if (block_host_console && TFM_Util.isFromHostConsole(this.commandSender.getName()))
                 {
                     return false;
@@ -134,23 +120,11 @@ public abstract class CJFM_Command
                         return false;
                     }
                 }
-                
                 else if (level == AdminLevel.SUPER && !is_super)
                 {
                     return false;
                 }
-                
                 else if (level == AdminLevel.OP && !sender_p.isOp())
-                {
-                    return false;
-                }
-                
-                else if (dlevel == DonatorLevel.SENIOR && !is_srdonator)
-                {
-                    return false;
-                }
-                
-                else if (dlevel == DonatorLevel.STANDARD && !is_donator)
                 {
                     return false;
                 }
