@@ -1,6 +1,6 @@
 package me.RyanWild.CJFreedomMod;
 
-import me.StevenLawson.TotalFreedomMod.Commands.CJFM_Command;
+import me.RyanWild.CJFreedomMod.Commands.CJFM_Command;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.plugin;
@@ -61,7 +61,7 @@ public class CJFreedomMod
                         StringUtils.join(args, " ")), true);
             }
 
-            final TFM_Command dispatcher;
+            final CJFM_Command dispatcher;
             try
             {
                 final ClassLoader classLoader = CJFreedomMod.class.getClassLoader();
