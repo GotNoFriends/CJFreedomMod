@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_Command;
+import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_Command;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
@@ -186,6 +187,7 @@ public class TotalFreedomMod extends JavaPlugin
             public void run()
             {
                 TFM_CommandLoader.getInstance().scan();
+                CJFM_CommandLoader.getInstance().scan();
                 TFM_CommandBlocker.getInstance().parseBlockingRules();
             }
         }.runTaskLater(plugin, 20L);
@@ -237,7 +239,7 @@ public class TotalFreedomMod extends JavaPlugin
             catch (Throwable ex)
             {
                 TFM_Log.severe("Command not loaded: " + cmd.getName() + "\n" + ExceptionUtils.getStackTrace(ex));
-                sender.sendMessage(ChatColor.RED + "Command Error: Command not loaded: " + cmd.getName());
+                sender.sendMessage(ChatColor.RED + "TFM-Command Error: Command not loaded: " + cmd.getName());
                 return true;
             }
 
@@ -255,7 +257,7 @@ public class TotalFreedomMod extends JavaPlugin
             catch (Throwable ex)
             {
                 TFM_Log.severe("Command Error: " + commandLabel + "\n" + ExceptionUtils.getStackTrace(ex));
-                sender.sendMessage(ChatColor.RED + "Command Error: " + ex.getMessage());
+                sender.sendMessage(ChatColor.RED + "TFM-Command Error: " + ex.getMessage());
             }
             
             
@@ -265,14 +267,14 @@ public class TotalFreedomMod extends JavaPlugin
             final CJFM_Command CJFMdispatcher;
             try
             {
-                final ClassLoader classLoader2 = TotalFreedomMod.class.getClassLoader();
-                CJFMdispatcher = (CJFM_Command) classLoader2.loadClass(String.format("%s.%s%s", CJFM_COMMAND_PATH, CJFM_COMMAND_PREFIX, cmd.getName().toLowerCase())).newInstance();
+                final ClassLoader classLoader = TotalFreedomMod.class.getClassLoader();
+                CJFMdispatcher = (CJFM_Command) classLoader.loadClass(String.format("%s.%s%s", CJFM_COMMAND_PATH, CJFM_COMMAND_PREFIX, cmd.getName().toLowerCase())).newInstance();
                 CJFMdispatcher.setup(plugin, sender, CJFMdispatcher.getClass());
             }
             catch (Throwable ex)
             {
                 TFM_Log.severe("Command not loaded: " + cmd.getName() + "\n" + ExceptionUtils.getStackTrace(ex));
-                sender.sendMessage(ChatColor.RED + "Command Error: Command not loaded: " + cmd.getName());
+                sender.sendMessage(ChatColor.RED + "CJFM-Command Error: Command not loaded: " + cmd.getName());
                 return true;
             }
 
@@ -290,7 +292,7 @@ public class TotalFreedomMod extends JavaPlugin
             catch (Throwable ex)
             {
                 TFM_Log.severe("Command Error: " + commandLabel + "\n" + ExceptionUtils.getStackTrace(ex));
-                sender.sendMessage(ChatColor.RED + "Command Error: " + ex.getMessage());
+                sender.sendMessage(ChatColor.RED + "CJFM-Command Error: " + ex.getMessage());
             }           
             
             

@@ -21,12 +21,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginIdentifiableCommand;
 import org.bukkit.plugin.Plugin;
 
-public class TFM_CommandLoader
+public class CJFM_CommandLoader
 {
-    public static final Pattern COMMAND_CLASS_PATTERN = Pattern.compile(TotalFreedomMod.COMMAND_PATH.replace('.', '/') + "/(" + TotalFreedomMod.COMMAND_PREFIX + "[^\\$]+)\\.class");
+    public static final Pattern CJFM_COMMAND_CLASS_PATTERN = Pattern.compile(TotalFreedomMod.CJFM_COMMAND_PATH.replace('.', '/') + "/(" + TotalFreedomMod.CJFM_COMMAND_PREFIX + "[^\\$]+)\\.class");
     private List<TFM_CommandInfo> commandList = null;
 
-    private TFM_CommandLoader()
+    private CJFM_CommandLoader()
     {
     }
 
@@ -46,7 +46,7 @@ public class TFM_CommandLoader
 
         for (TFM_CommandInfo commandInfo : commandList)
         {
-            TFM_DynamicCommand dynamicCommand = new TFM_DynamicCommand(commandInfo);
+            CJFM_DynamicCommand dynamicCommand = new CJFM_DynamicCommand(commandInfo);
 
             Command existing = commandMap.getCommand(dynamicCommand.getName());
             if (existing != null)
@@ -57,7 +57,7 @@ public class TFM_CommandLoader
             commandMap.register(TotalFreedomMod.plugin.getDescription().getName(), dynamicCommand);
         }
 
-        TFM_Log.info("TFM commands loaded.");
+        TFM_Log.info("CJFM commands loaded.");
     }
 
     public void unregisterCommand(String commandName)
@@ -136,12 +136,12 @@ public class TFM_CommandLoader
                 while ((zipEntry = zip.getNextEntry()) != null)
                 {
                     String entryName = zipEntry.getName();
-                    Matcher matcher = COMMAND_CLASS_PATTERN.matcher(entryName);
+                    Matcher matcher = CJFM_COMMAND_CLASS_PATTERN.matcher(entryName);
                     if (matcher.find())
                     {
                         try
                         {
-                            Class<?> commandClass = Class.forName(TotalFreedomMod.COMMAND_PATH + "." + matcher.group(1));
+                            Class<?> commandClass = Class.forName(TotalFreedomMod.CJFM_COMMAND_PATH + "." + matcher.group(1));
 
                             CommandPermissions commandPermissions = (CommandPermissions) commandClass.getAnnotation(CommandPermissions.class);
                             CommandParameters commandParameters = (CommandParameters) commandClass.getAnnotation(CommandParameters.class);
@@ -276,11 +276,11 @@ public class TFM_CommandLoader
         }
     }
 
-    public class TFM_DynamicCommand extends Command implements PluginIdentifiableCommand
+    public class CJFM_DynamicCommand extends Command implements PluginIdentifiableCommand
     {
         private final TFM_CommandInfo commandInfo;
 
-        private TFM_DynamicCommand(TFM_CommandInfo commandInfo)
+        private CJFM_DynamicCommand(TFM_CommandInfo commandInfo)
         {
             super(commandInfo.getCommandName(), commandInfo.getDescriptionPermissioned(), commandInfo.getUsage(), commandInfo.getAliases());
 
@@ -329,13 +329,13 @@ public class TFM_CommandLoader
         }
     }
 
-    public static TFM_CommandLoader getInstance()
+    public static CJFM_CommandLoader getInstance()
     {
         return TFM_CommandScannerHolder.INSTANCE;
     }
 
     private static class TFM_CommandScannerHolder
     {
-        private static final TFM_CommandLoader INSTANCE = new TFM_CommandLoader();
+        private static final CJFM_CommandLoader INSTANCE = new CJFM_CommandLoader();
     }
 }
