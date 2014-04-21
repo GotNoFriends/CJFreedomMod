@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package me.RyanWild.CJFreedomMod.Bridge;
 
-/**
- *
- * @author ryan
- */
+import net.coreprotect.CoreProtect;
+import net.coreprotect.CoreProtectAPI;
+import static org.bukkit.Bukkit.getServer;
+import org.bukkit.plugin.Plugin;
+
 public class CoreProtectBridge
 {
 
-    /*  private CoreProtectAPI getCoreProtect()
+      private CoreProtectAPI getCoreProtect()
      {
      Plugin plugin = getServer().getPluginManager().getPlugin("CoreProtect");
 
@@ -27,5 +23,5 @@ public class CoreProtectBridge
      return null;
      }
      return CoreProtect;
-     } */
+     } 
 }
