@@ -1,6 +1,7 @@
 package me.RyanWild.CJFreedomMod.Commands;
 
 import me.RyanWild.CJFreedomMod.CJFM_Util;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
@@ -25,7 +26,7 @@ public class Command_dev extends CJFM_Command
                 if (args[0].equalsIgnoreCase("teston"))
                 {
                     TFM_Util.adminAction("WARNING: " + sender.getName(), "Has Started Testing on this server.", true);
-                    TFM_ConfigEntry.DEVELOPMENT_MODE.setBoolean(true);
+                    CJFM_ConfigEntry.DEVELOPMENT_MODE.setBoolean(true);
                     for (Player player : server.getOnlinePlayers())
                     player.sendMessage(ChatColor.DARK_AQUA + "Warning: CJFreedom is currently in development mode. This means there may be unstable plugin builds on this server, and the server could crash more than normal!");
                     return true;
@@ -34,7 +35,7 @@ public class Command_dev extends CJFM_Command
                 if (args[0].equalsIgnoreCase("testoff"))
                 {
                     TFM_Util.adminAction("FINISHED: " + sender.getName(), "Has finished server side testing", true);
-                    TFM_ConfigEntry.DEVELOPMENT_MODE.setBoolean(false);
+                    CJFM_ConfigEntry.DEVELOPMENT_MODE.setBoolean(false);
                     return true;
                 }
             }

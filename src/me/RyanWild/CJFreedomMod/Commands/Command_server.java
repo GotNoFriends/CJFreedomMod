@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
@@ -80,8 +80,8 @@ public class Command_server extends CJFM_Command
 
     public static void PanelAccess(final CommandSender sender, final String targetName, final String targetIP, final PanelMode mode)
     {
-        final String PanelURL = TFM_ConfigEntry.PANEL_URL.getString();
-        final String PanelAPI = TFM_ConfigEntry.PANEL_API_KEY.getString();
+        final String PanelURL = CJFM_ConfigEntry.PANEL_URL.getString();
+        final String PanelAPI = CJFM_ConfigEntry.PANEL_API_KEY.getString();
 
         if (PanelURL == null || PanelAPI == null || PanelURL.isEmpty() || PanelAPI.isEmpty())
         {

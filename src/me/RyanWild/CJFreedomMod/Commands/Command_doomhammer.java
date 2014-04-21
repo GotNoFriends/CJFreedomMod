@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import me.RyanWild.CJFreedomMod.CJFreedomMod;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Ban;
@@ -26,7 +27,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 @CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.ONLY_IN_GAME)
 @CommandParameters(description = "Gain a doomhammer!", usage = "/<command>")
-public class Command_doomhammer extends TFM_Command
+public class Command_doomhammer extends CJFM_Command
 {
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
@@ -46,10 +47,10 @@ public class Command_doomhammer extends TFM_Command
             return false;
         }
 
-        if (TFM_ConfigEntry.DHAMMER_MODE.getBoolean() == false)
+        if (CJFM_ConfigEntry.DHAMMER_MODE.getBoolean() == false)
         {
             TFM_Util.adminAction(sender.getName(), "Enabling The DoomHammer!", true);
-            TFM_ConfigEntry.DHAMMER_MODE.setBoolean(true);
+            CJFM_ConfigEntry.DHAMMER_MODE.setBoolean(true);
             inventory.addItem(dhammer);
             for (Player player : server.getOnlinePlayers())
             {
@@ -63,10 +64,10 @@ public class Command_doomhammer extends TFM_Command
             return true;
         }
         
-        if (TFM_ConfigEntry.DHAMMER_MODE.getBoolean() == true)
+        if (CJFM_ConfigEntry.DHAMMER_MODE.getBoolean() == true)
         {
             TFM_Util.adminAction(sender.getName(), "Disabling the DoomHammer, YOU ARE SAFE... FOR NOW!!!!", true);
-            TFM_ConfigEntry.DHAMMER_MODE.setBoolean(false);
+            CJFM_ConfigEntry.DHAMMER_MODE.setBoolean(false);
             inventory.removeItem(dhammer);
             for (Player player : server.getOnlinePlayers())
             {
@@ -93,10 +94,10 @@ public class Command_doomhammer extends TFM_Command
 
         final String IP = player.getAddress().getAddress().getHostAddress().trim();
 
-        // remove from superadmin
-        if (TFM_AdminList.isUserAdmin(player))
+       // remove from superadmin
+        if (TFM_AdminList.isSuperAdmin(player))
         {
-            TFM_Util.adminAction(sender.getName() + "'s Doom Hammer", "Removing " + player.getName() + " from the superadmin list.", true);
+            TFM_Util.adminAction(sender.getName(), "Removing " + player.getName() + " from the superadmin list.", true);
             TFM_AdminList.removeSuperadmin(player);
         }
 

@@ -1,7 +1,7 @@
 package me.RyanWild.CJFreedomMod.Commands;
 
 import me.RyanWild.CJFreedomMod.CJFM_Util;
-import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
@@ -37,28 +37,28 @@ public class Command_emg extends CJFM_Command
             if (args[0].equalsIgnoreCase("1"))
             {
                 TFM_Util.adminAction("WARNING: " + sender.getName(), "Activating a level 1 security lockdown.", true);
-                TFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(true);
+                CJFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(true);
             }
 
             if (args[0].equalsIgnoreCase("2"))
             {
                 TFM_Util.adminAction("WARNING: " + sender.getName(), "Activating a level 2 security lockdown.", true);
-                TFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(true);
+                CJFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(true);
             }
 
             if (args[0].equalsIgnoreCase("3"))
             {
                 TFM_Util.adminAction("WARNING: " + sender.getName(), "Activating a level 3 security lockdown.", true);
-                TFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(false);
-                TFM_ConfigEntry.EMERGANCY_MODE.setBoolean(true);
+                CJFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(false);
+                CJFM_ConfigEntry.EMERGANCY_MODE.setBoolean(true);
 
             }
 
             if (args[0].equalsIgnoreCase("4"))
             {
                 TFM_Util.adminAction("WARNING: " + sender.getName(), "Activating a level 4 security lockdown.", true);
-                TFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(false);
-                TFM_ConfigEntry.EMERGANCY_MODE.setBoolean(true);
+                CJFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(false);
+                CJFM_ConfigEntry.EMERGANCY_MODE.setBoolean(true);
                 TFM_Util.adminAction("WARNING: " + sender.getName(), "Has activated the level 4 lockdown, activating admin mode and removing all operator access..", true);
                 for (OfflinePlayer player : server.getOperators())
                 {
@@ -75,11 +75,11 @@ public class Command_emg extends CJFM_Command
             if (args[0].equalsIgnoreCase("5"))
             {
                 TFM_Util.adminAction("WARNING: " + sender.getName(), "Activating a level 5 security lockdown.", true);
-                TFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(false);
-                TFM_ConfigEntry.EMERGANCY_MODE.setBoolean(true);
+                CJFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(false);
+                CJFM_ConfigEntry.EMERGANCY_MODE.setBoolean(true);
                 for (Player player : server.getOnlinePlayers())
                 {
-                    if (!TFM_SuperadminList.isUserSuperadmin(player))
+                    if (!TFM_AdminList.isSuperAdmin(player))
                     {
                         player.kickPlayer("Server has initiated a level 5 lockdown. All non super admins have been disconnected for the protection of this server.");
                     }
@@ -99,8 +99,8 @@ public class Command_emg extends CJFM_Command
             if (args[0].equalsIgnoreCase("off"))
             {
                 TFM_Util.adminAction("WARNING: " + sender.getName(), "Security Lockdown Disabled", true);
-                TFM_ConfigEntry.EMERGANCY_MODE.setBoolean(false);
-                TFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(false);
+                CJFM_ConfigEntry.EMERGANCY_MODE.setBoolean(false);
+                CJFM_ConfigEntry.EMERGANCY_MODE_OPEN.setBoolean(false);
                 for (Player p : server.getOnlinePlayers())
                 {
                     if (!p.isOp())
