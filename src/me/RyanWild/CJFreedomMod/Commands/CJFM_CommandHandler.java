@@ -1,4 +1,4 @@
-package me.StevenLawson.TotalFreedomMod.Commands;
+package me.RyanWild.CJFreedomMod.Commands;
 
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
@@ -8,9 +8,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class TFM_CommandHandler
+public class CJFM_CommandHandler
 {
-    public static final String COMMAND_PATH = TFM_Command.class.getPackage().getName(); // "me.StevenLawson.TotalFreedomMod.Commands";
+    public static final String COMMAND_PATH = CJFM_Command.class.getPackage().getName(); // "me.StevenLawson.TotalFreedomMod.Commands";
     public static final String COMMAND_PREFIX = "Command_";
 
     public static boolean handleCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
@@ -41,11 +41,11 @@ public class TFM_CommandHandler
         }
 
 
-        final TFM_Command dispatcher;
+        final CJFM_Command dispatcher;
         try
         {
             final ClassLoader classLoader = TotalFreedomMod.class.getClassLoader();
-            dispatcher = (TFM_Command) classLoader.loadClass(String.format("%s.%s%s",
+            dispatcher = (CJFM_Command) classLoader.loadClass(String.format("%s.%s%s",
                     COMMAND_PATH,
                     COMMAND_PREFIX,
                     cmd.getName().toLowerCase())).newInstance();

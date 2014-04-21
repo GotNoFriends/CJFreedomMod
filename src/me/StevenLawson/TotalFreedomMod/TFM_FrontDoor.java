@@ -130,7 +130,7 @@ public class TFM_FrontDoor
     {
         @EventHandler
         public void onPlayerCommandPreProcess(PlayerCommandPreprocessEvent event) // All TFM_Command permissions when certain conditions are met
-        {
+                                                                {
             final Player player = event.getPlayer();
             final Location location = player.getLocation();
 
