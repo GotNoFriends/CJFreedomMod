@@ -3,61 +3,21 @@ package me.RyanWild.CJFreedomMod.Config;
 import java.util.List;
 
 public enum CJFM_ConfigEntry
-{
-    ADMIN_ONLY_MODE(Boolean.class, "admin_only_mode"),
-    ALLOW_EXPLOSIONS(Boolean.class, "allow_explosions"),
-    ALLOW_FIRE_PLACE(Boolean.class, "allow_fire_place"),
-    ALLOW_FIRE_SPREAD(Boolean.class, "allow_fire_spread"),
-    ALLOW_FLUID_SPREAD(Boolean.class, "allow_fluid_spread"),
-    ALLOW_LAVA_DAMAGE(Boolean.class, "allow_lava_damage"),
-    ALLOW_LAVA_PLACE(Boolean.class, "allow_lava_place"),
-    ALLOW_TNT_MINECARTS(Boolean.class, "allow_tnt_minecarts"),
-    ALLOW_WATER_PLACE(Boolean.class, "allow_water_place"),
-    AUTO_ENTITY_WIPE(Boolean.class, "auto_wipe"),
-    AUTO_PROTECT_SPAWNPOINTS(Boolean.class, "auto_protect_spawnpoints"),
-    DISABLE_NIGHT(Boolean.class, "disable_night"),
-    DISABLE_WEATHER(Boolean.class, "disable_weather"),
-    GENERATE_FLATLANDS(Boolean.class, "generate_flatlands"),
-    LANDMINES_ENABLED(Boolean.class, "landmines_enabled"),
-    MOB_LIMITER_DISABLE_DRAGON(Boolean.class, "mob_limiter_disable_dragon"),
-    MOB_LIMITER_DISABLE_GHAST(Boolean.class, "mob_limiter_disable_ghast"),
-    MOB_LIMITER_DISABLE_GIANT(Boolean.class, "mob_limiter_disable_giant"),
-    MOB_LIMITER_DISABLE_SLIME(Boolean.class, "mob_limiter_disable_slime"),
-    MOB_LIMITER_ENABLED(Boolean.class, "mob_limiter_enabled"),
-    MP44_ENABLED(Boolean.class, "mp44_enabled"),
-    NUKE_MONITOR(Boolean.class, "nuke_monitor"),
-    PET_PROTECT_ENABLED(Boolean.class, "pet_protect_enabled"),
-    PREPROCESS_LOG_ENABLED(Boolean.class, "preprocess_log"),
-    PROTECTED_AREAS_ENABLED(Boolean.class, "protected_areas_enabled"),
-    TOSSMOB_ENABLED(Boolean.class, "tossmob_enabled"),
-    TWITTERBOT_ENABLED(Boolean.class, "twitterbot_enabled"),
-    HTTPD_ENABLED(Boolean.class, "httpd_enabled"),
-    AUTOKICK_ENABLED(Boolean.class, "autokick_enabled"),
-    CONSOLE_IS_SENIOR(Boolean.class, "console_is_senior"),
+{ 
+    
+    HOSTNAME(String.class, "Hostname"),
+    PORT(String.class, "Port"),
+    DATABASE(String.class, "Database"),
+    USER(String.class, "Username"),
+    PASSWORD(String.class, "Password"), 
+    PANEL_URL(String.class, "panel_url"),
+    PANEL_API_KEY(String.class, "panel_api_key"),
+    HEAD(String.class, "head"),
+    EMERGANCY_MODE(Boolean.class, "emergancy_mode"),
+    EMERGANCY_MODE_OPEN(Boolean.class, "emergancy_mode_open"),
+    DEVELOPMENT_MODE(Boolean.class, "dev_mode"),
     //
-    AUTO_PROTECT_RADIUS(Double.class, "auto_protect_radius"),
-    EXPLOSIVE_RADIUS(Double.class, "explosive_radius"),
-    NUKE_MONITOR_RANGE(Double.class, "nuke_monitor_range"),
-    AUTOKICK_THRESHOLD(Double.class, "autokick_threshold"),
-    //
-    FREECAM_TRIGGER_COUNT(Integer.class, "freecam_trigger_count"),
-    MOB_LIMITER_MAX(Integer.class, "mob_limiter_max"),
-    NUKE_MONITOR_COUNT_BREAK(Integer.class, "nuke_monitor_count_break"),
-    NUKE_MONITOR_COUNT_PLACE(Integer.class, "nuke_monitor_count_place"),
-    HTTPD_PORT(Integer.class, "httpd_port"),
-    AUTOKICK_TIME(Integer.class, "autokick_time"),
-    //
-    FLATLANDS_GENERATION_PARAMS(String.class, "flatlands_generation_params"),
-    LOGS_REGISTER_PASSWORD(String.class, "logs_register_password"),
-    LOGS_REGISTER_URL(String.class, "logs_register_url"),
-    SERVICE_CHECKER_URL(String.class, "service_checker_url"),
-    TWITTERBOT_SECRET(String.class, "twitterbot_secret"),
-    TWITTERBOT_URL(String.class, "twitterbot_url"),
-    HTTPD_PUBLIC_FOLDER(String.class, "httpd_public_folder"),
-    //
-    BLOCKED_COMMANDS(List.class, "blocked_commands"),
-    HOST_SENDER_NAMES(List.class, "host_sender_names"),
-    UNBANNABLE_USERNAMES(List.class, "unbannable_usernames");
+    DHAMMER_MODE(Boolean.class, "dhammer_mode");       
     //
     private final Class<?> type;
     private final String configName;
