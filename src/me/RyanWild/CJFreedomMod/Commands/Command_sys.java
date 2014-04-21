@@ -156,7 +156,7 @@ public class Command_sys extends CJFM_Command
                 {
                 }
 
-                if (!TFM_AdminList.getLowerSuperadminNames().contains(targetName.toLowerCase()))
+                if (!TFM_AdminList.getLowerSuperNames().contains(targetName.toLowerCase()))
                 {
                     playerMsg("Superadmin not found: " + targetName);
                     return true;
