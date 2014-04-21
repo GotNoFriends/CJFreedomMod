@@ -207,8 +207,7 @@ public class TotalFreedomMod extends JavaPlugin
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
 
-        return CJFM_CommandHandler.handleCommand(sender, cmd, commandLabel, args);               
-        return TFM_CommandHandler.handleCommand(sender, cmd, commandLabel, args);
+        return CJFM_CommandHandler.handleCommand(sender, cmd, commandLabel, args) && TFM_CommandHandler.handleCommand(sender, cmd, commandLabel, args);      
     }
 
     public static void loadPermbanConfig()

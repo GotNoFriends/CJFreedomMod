@@ -10,8 +10,8 @@ import org.bukkit.entity.Player;
 
 public class CJFM_CommandHandler
 {
-    public static final String COMMAND_PATH = CJFM_Command.class.getPackage().getName(); // "me.StevenLawson.TotalFreedomMod.Commands";
-    public static final String COMMAND_PREFIX = "Command_";
+    public static final String CJFM_COMMAND_PATH = CJFM_Command.class.getPackage().getName(); // "me.StevenLawson.TotalFreedomMod.Commands";
+    public static final String CJFM_COMMAND_PREFIX = "Command_";
 
     public static boolean handleCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
@@ -46,17 +46,14 @@ public class CJFM_CommandHandler
         {
             final ClassLoader classLoader = TotalFreedomMod.class.getClassLoader();
             dispatcher = (CJFM_Command) classLoader.loadClass(String.format("%s.%s%s",
-                    COMMAND_PATH,
-                    COMMAND_PREFIX,
+                    CJFM_COMMAND_PATH,
+                    CJFM_COMMAND_PREFIX,
                     cmd.getName().toLowerCase())).newInstance();
             dispatcher.setup(TotalFreedomMod.plugin, sender, dispatcher.getClass());
         }
         catch (Exception ex)
         {
-            TFM_Log.severe("Could not load command: " + cmd.getName());
-            TFM_Log.severe(ex);
-
-            sender.sendMessage(ChatColor.RED + "Command Error! Could not load command: " + cmd.getName());
+            TFM_Log.info("Possible Command Error: " + cmd.getName());
             return true;
         }
 
