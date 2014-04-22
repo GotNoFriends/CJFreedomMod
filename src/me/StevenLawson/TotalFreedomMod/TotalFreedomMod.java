@@ -1,5 +1,6 @@
 package me.StevenLawson.TotalFreedomMod;
 
+import husky.mysql.MySQL;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandHandler;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.HTTPD.TFM_HTTPD_Manager;
 import me.StevenLawson.TotalFreedomMod.Listener.*;
 import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
@@ -34,6 +36,8 @@ import org.mcstats.Metrics;
 
 public class TotalFreedomMod extends JavaPlugin
 {
+    public static MySQL mySQL;
+    //
     public static final long HEARTBEAT_RATE = 5L; //Seconds
     public static final long SERVICE_CHECKER_RATE = 120L;
     //
@@ -93,6 +97,8 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_AdminList.load();
 
         loadPermbanConfig();
+
+        mySQL = new MySQL(plugin, CJFM_ConfigEntry.HOSTNAME.getString(), CJFM_ConfigEntry.PORT.getString(), CJFM_ConfigEntry.DATABASE.getString(), CJFM_ConfigEntry.USER.getString(), CJFM_ConfigEntry.PASSWORD.getString());
 
         TFM_PlayerList.getInstance().load();
         TFM_BanManager.getInstance().load();
@@ -207,7 +213,7 @@ public class TotalFreedomMod extends JavaPlugin
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
 
-        return CJFM_CommandHandler.handleCommand(sender, cmd, commandLabel, args) && TFM_CommandHandler.handleCommand(sender, cmd, commandLabel, args);      
+        return CJFM_CommandHandler.handleCommand(sender, cmd, commandLabel, args) && TFM_CommandHandler.handleCommand(sender, cmd, commandLabel, args);
     }
 
     public static void loadPermbanConfig()
