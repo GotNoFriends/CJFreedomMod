@@ -1,5 +1,6 @@
 package me.StevenLawson.TotalFreedomMod;
 
+import me.RyanWild.CJFreedomMod.CJFM_Util;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.DEVELOPERS;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -15,7 +16,12 @@ public enum TFM_PlayerRank
     TELNET("a " + ChatColor.DARK_GREEN + "Super Telnet Admin", ChatColor.DARK_GREEN + "[STA]"),
     SENIOR("a " + ChatColor.LIGHT_PURPLE + "Senior Admin", ChatColor.LIGHT_PURPLE + "[SrA]"),
     OWNER("the " + ChatColor.BLUE + "Owner", ChatColor.BLUE + "[Owner]"),
-    CONSOLE("The " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]");
+    CONSOLE("The " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]"),
+    
+    //CJFM
+    EXECUTIVE("an " + ChatColor.RED + "Executive", ChatColor.RED + "[Executive]"),
+    SYSADMIN("a " + ChatColor.DARK_RED + "System Admin", ChatColor.DARK_RED + "[Sys-Admin]");
+    
     private String loginMessage;
     private String prefix;
 
@@ -63,13 +69,22 @@ public enum TFM_PlayerRank
         {
             return IMPOSTOR;
         }
+        
+        if (CJFM_Util.SYSADMINS.contains(sender.getName().toLowerCase()))
+        {
+            return SYSADMIN;
+        }
+        
+        if (CJFM_Util.EXECUTIVES.contains(sender.getName().toLowerCase()))
+        {
+            return EXECUTIVE;
+        }
 
-        if (DEVELOPERS.contains(sender.getName()))
+        if (DEVELOPERS.contains(sender.getName().toLowerCase()) || CJFM_Util.DEVELOPERS.contains(sender.getName().toLowerCase()))
         {
             return DEVELOPER;
         }
-
-
+        
         final TFM_Admin entry = TFM_AdminList.getEntry((Player) sender);
 
         final TFM_PlayerRank rank;
