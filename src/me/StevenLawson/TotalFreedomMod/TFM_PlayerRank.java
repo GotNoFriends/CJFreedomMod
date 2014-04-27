@@ -70,12 +70,12 @@ public enum TFM_PlayerRank
             return IMPOSTOR;
         }
         
-        if (CJFM_Util.SYSADMINS.contains(sender.getName().toLowerCase()))
+        if (CJFM_Util.SYSADMINS.contains(sender.getName()))
         {
             return SYSADMIN;
         }
         
-        if (CJFM_Util.EXECUTIVES.contains(sender.getName().toLowerCase()))
+        if (CJFM_Util.EXECUTIVES.contains(sender.getName()))
         {
             return EXECUTIVE;
         }
