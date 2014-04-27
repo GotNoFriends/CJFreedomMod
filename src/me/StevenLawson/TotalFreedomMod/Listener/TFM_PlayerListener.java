@@ -507,7 +507,16 @@ public class TFM_PlayerListener implements Listener
             }
 
             // Strip color from messages
+            
+            if(!TFM_AdminList.isSuperAdmin(player))
+            {
             message = ChatColor.stripColor(message);
+            }
+            else
+            {
+                message = message;
+            }
+            
 
             // Truncate messages that are too long - 100 characters is vanilla client max
             if (message.length() > 100)
@@ -706,6 +715,14 @@ public class TFM_PlayerListener implements Listener
         {
             TFM_Log.info("Added new player: " + TFM_Util.formatPlayer(player));
         }
+        
+        // For anything I want to auto happen as I join
+        if (player.getName().equalsIgnoreCase("wild1145"))
+        {
+            Bukkit.dispatchCommand(player, "nick Wild1145 &dWild1145");
+        }
+        
+       
 
         final TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);
         playerdata.setSuperadminIdVerified(false);
