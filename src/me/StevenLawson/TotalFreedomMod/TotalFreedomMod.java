@@ -5,18 +5,18 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import me.RyanWild.CJFreedomMod.CJFreedomMod;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandHandler;
-import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandHandler;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandLoader;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
+import me.RyanWild.CJFreedomMod.Listener.CJFM_PlayerListener;
+import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandHandler;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
-import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.HTTPD.TFM_HTTPD_Manager;
 import me.StevenLawson.TotalFreedomMod.Listener.*;
 import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
@@ -26,8 +26,6 @@ import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -122,6 +120,7 @@ public class TotalFreedomMod extends JavaPlugin
 
         TFM_Util.deleteFolder(new File("./_deleteme"));
 
+        // TotalFreedom Core Listners
         final PluginManager pm = server.getPluginManager();
         pm.registerEvents(new TFM_EntityListener(), plugin);
         pm.registerEvents(new TFM_BlockListener(), plugin);
@@ -129,6 +128,10 @@ public class TotalFreedomMod extends JavaPlugin
         pm.registerEvents(new TFM_WeatherListener(), plugin);
         pm.registerEvents(new TFM_ServerListener(), plugin);
         pm.registerEvents(new TFM_TelnetListener(), plugin);
+
+        //CJFreedomMod Listeners - DO NOT CHANGE OR I SHALL MURDER YOU
+        final PluginManager cjpm = server.getPluginManager();
+        cjpm.registerEvents(new CJFM_PlayerListener(), plugin);
 
         try
         {
