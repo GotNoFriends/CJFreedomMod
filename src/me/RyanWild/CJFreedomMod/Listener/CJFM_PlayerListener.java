@@ -25,7 +25,7 @@ public class CJFM_PlayerListener implements Listener
        }
        else if (CJFM_Util.DEVELOPERS.contains(player.getName()))
        {
-           
+           player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
        }
        else if(TFM_AdminList.isSeniorAdmin(player))
        {
