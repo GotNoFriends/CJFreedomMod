@@ -31,6 +31,10 @@ public class CJFM_PlayerListener implements Listener
        {
            player.setPlayerListName(ChatColor.LIGHT_PURPLE + player.getName());
        }
+       else if (TFM_AdminList.isTelnetAdmin(player, true))
+       {
+          player.setPlayerListName(ChatColor.GREEN + player.getName()); 
+       }
        else if(TFM_AdminList.isSuperAdmin(player))
        {
            player.setPlayerListName(ChatColor.AQUA + player.getName());
