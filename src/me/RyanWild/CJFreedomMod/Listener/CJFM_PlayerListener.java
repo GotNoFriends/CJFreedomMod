@@ -1,6 +1,7 @@
 package me.RyanWild.CJFreedomMod.Listener;
 
 import me.RyanWild.CJFreedomMod.CJFM_Util;
+import me.RyanWild.CJFreedomMod.CJFM_Util;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
