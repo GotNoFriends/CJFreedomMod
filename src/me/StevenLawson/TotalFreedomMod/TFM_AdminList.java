@@ -115,49 +115,44 @@ public class TFM_AdminList
 
     public static void load()
     {
-        try
+        adminList.clear();
+
+        final TFM_Config config = new TFM_Config(TotalFreedomMod.plugin, TotalFreedomMod.SUPERADMIN_FILE, true);
+        config.load();
+
+        cleanThreshold = config.getInt("clean_threshold_hours", cleanThreshold);
+
+        // Parse old superadmins
+        if (config.isConfigurationSection("superadmins"))
         {
-            adminList.clear();
-
-            final TFM_Config config = new TFM_Config(TotalFreedomMod.plugin, TotalFreedomMod.SUPERADMIN_FILE, true);
-            config.load();
-
-            cleanThreshold = config.getInt("clean_threshold_hours", cleanThreshold);
-
-            // Parse old superadmins
-            if (config.isConfigurationSection("superadmins"))
-            {
-                parseOldConfig(config);
-            }
-
-            if (!config.isConfigurationSection("admins"))
-            {
-                TFM_Log.warning("Missing admins section in superadmin.yml.");
-                return;
-            }
-
-            final ConfigurationSection section = config.getConfigurationSection("admins");
-
-            for (String uuidString : section.getKeys(false))
-            {
-                if (!TFM_Util.isUniqueId(uuidString))
-                {
-                    TFM_Log.warning("Invalid Unique ID: " + uuidString + " in superadmin.yml, ignoring");
-                    continue;
-                }
-
-                final UUID uuid = UUID.fromString(uuidString);
-
-                final TFM_Admin superadmin = new TFM_Admin(uuid, section.getConfigurationSection(uuidString));
-                adminList.put(uuid, superadmin);
-            }
-
-            updateIndexLists();
+            parseOldConfig(config);
         }
-        catch (Exception ex)
+
+        if (!config.isConfigurationSection("admins"))
         {
-            TFM_Log.severe(ex);
+            TFM_Log.warning("Missing admins section in superadmin.yml.");
+            return;
         }
+
+        final ConfigurationSection section = config.getConfigurationSection("admins");
+
+        for (String uuidString : section.getKeys(false))
+        {
+            if (!TFM_Util.isUniqueId(uuidString))
+            {
+                TFM_Log.warning("Invalid Unique ID: " + uuidString + " in superadmin.yml, ignoring");
+                continue;
+            }
+
+            final UUID uuid = UUID.fromString(uuidString);
+
+            final TFM_Admin superadmin = new TFM_Admin(uuid, section.getConfigurationSection(uuidString));
+            adminList.put(uuid, superadmin);
+        }
+
+        updateIndexLists();
+
+        TFM_Log.info("Loaded " + adminList.size() + " admins (" + superUUIDs.size() + " active) and " + superIps.size() + " IPs.");
     }
 
     public static void createBackup()
@@ -209,6 +204,46 @@ public class TFM_AdminList
         }
 
         TFM_AdminWorld.getInstance().wipeAccessCache();
+    }
+
+    private static void parseOldConfig(TFM_Config config)
+    {
+        TFM_Log.info("Old superadmin configuration found, parsing...");
+
+        final ConfigurationSection section = config.getConfigurationSection("superadmins");
+
+        int counter = 0;
+        int errors = 0;
+
+        for (String admin : config.getConfigurationSection("superadmins").getKeys(false))
+        {
+            final OfflinePlayer player = Bukkit.getOfflinePlayer(admin);
+
+            if (player == null || player.getUniqueId() == null)
+            {
+                errors++;
+                TFM_Log.warning("Could not convert admin " + admin + ", UUID could not be found!");
+                continue;
+            }
+
+            final String uuid = player.getUniqueId().toString();
+
+            config.set("admins." + uuid + ".last_login_name", player.getName());
+            config.set("admins." + uuid + ".is_activated", section.getBoolean(admin + ".is_activated"));
+            config.set("admins." + uuid + ".is_telnet_admin", section.getBoolean(admin + ".is_telnet_admin"));
+            config.set("admins." + uuid + ".is_senior_admin", section.getBoolean(admin + ".is_senior_admin"));
+            config.set("admins." + uuid + ".last_login", section.getString(admin + ".last_login"));
+            config.set("admins." + uuid + ".custom_login_message", section.getString(admin + ".custom_login_message"));
+            config.set("admins." + uuid + ".console_aliases", section.getStringList(admin + ".console_aliases"));
+            config.set("admins." + uuid + ".ips", section.getStringList(admin + ".ips"));
+
+            counter++;
+        }
+
+        config.set("superadmins", null);
+        config.save();
+
+        TFM_Log.info("Done! " + counter + " admins parsed, " + errors + " errors");
     }
 
     private static void parseOldConfig(TFM_Config config)
@@ -508,6 +543,7 @@ public class TFM_AdminList
                 superadmin.addIp(ip);
             }
             save();
+            updateIndexLists();
             return;
         }
 
