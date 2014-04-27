@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.ALL, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(description = "Displays a text unicorn is everyone's chat!", usage = "/<command>")
 public class Command_unicorn extends CJFM_Command
 {
@@ -61,7 +61,7 @@ public class Command_unicorn extends CJFM_Command
                 
                 TFM_Util.bcastMsg("   ");
                 TFM_Util.bcastMsg("   ");
-                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "You've been " + TFM_Util.randomChatColor() + "unicorned!");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "You've been " + TFM_Util.randomChatColor() + "unicorned by " + TFM_Util.randomChatColor() + sender.getName());
      
             return false;
     }
