@@ -6,6 +6,9 @@ head: wild1145
 # DoomHammer
 dhammer_mode: false
 
+# Admin World
+adminmode: true
+
 # Admin-Only Mode
 emergancy_mode: false
 emergancy_mode_open: false

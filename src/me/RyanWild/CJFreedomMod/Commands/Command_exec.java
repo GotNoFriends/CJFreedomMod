@@ -1,6 +1,7 @@
 package me.RyanWild.CJFreedomMod.Commands;
 
 import me.RyanWild.CJFreedomMod.CJFM_Util;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Ban;
@@ -145,14 +146,14 @@ public class Command_exec extends CJFM_Command
             if(args[1].equalsIgnoreCase("on"))
             {
                 TFM_Util.adminAction(sender.getName(), "Enabling AdminWorld!", false);
-                TFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(true);
+                CJFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(true);
                 return true;
             }
             
             if(args[1].equalsIgnoreCase("off"))
             {
                 TFM_Util.adminAction(sender.getName(), "Disabling AdminWorld!", true);
-                TFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(false);
+                CJFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(false);
                 return true;
             }
         }

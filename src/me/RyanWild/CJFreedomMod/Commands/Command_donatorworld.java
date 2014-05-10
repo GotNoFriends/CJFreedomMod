@@ -1,16 +1,16 @@
 package me.RyanWild.CJFreedomMod.Commands;
 
-import me.RyanWild.CJFreedomMod.CJFM_DonatorWorld;
-import me.RyanWild.CJFreedomMod.CJFM_DonatorList;
+import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
+import me.RyanWild.CJFreedomMod.World.CJFM_DonatorWorld;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = AdminLevel.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Go to the DonatorWorld.", usage = "/<command> [guest < list | purge | add <player> | remove <player> > | time <morning | noon | evening | night> | weather <off | on | storm>]")
+@CommandParameters(description = "Go to the Donator World.", usage = "/<command> [guest < list | purge | add <player> | remove <player> > | time <morning | noon | evening | night> | weather <off | on | storm>]")
 public class Command_donatorworld extends CJFM_Command
 {
     private enum CommandMode
@@ -54,21 +54,22 @@ public class Command_donatorworld extends CJFM_Command
             {
                 case TELEPORT:
                 {
+
                     if (!(sender instanceof Player) || sender_p == null)
                     {
                         return true;
                     }
 
-                    World donatorWorld = null;
+                    World adminWorld = null;
                     try
                     {
-                        donatorWorld = CJFM_DonatorWorld.getInstance().getWorld();
+                        adminWorld = CJFM_DonatorWorld.getInstance().getWorld();
                     }
                     catch (Exception ex)
                     {
                     }
 
-                    if (donatorWorld == null || sender_p.getWorld() == donatorWorld)
+                    if (adminWorld == null || sender_p.getWorld() == adminWorld)
                     {
                         playerMsg("Going to the main world.");
                         sender_p.teleport(server.getWorlds().get(0).getSpawnLocation());
@@ -77,12 +78,12 @@ public class Command_donatorworld extends CJFM_Command
                     {
                         if (CJFM_DonatorWorld.getInstance().canAccessWorld(sender_p))
                         {
-                            playerMsg("Going to the DonatorWorld.");
+                            playerMsg("Going to the Donator World.");
                             CJFM_DonatorWorld.getInstance().sendToWorld(sender_p);
                         }
                         else
                         {
-                            playerMsg("You don't have permission to access the DonatorWorld.");
+                            playerMsg("You don't have permission to access the Doantor World.");
                         }
                     }
 
@@ -94,13 +95,13 @@ public class Command_donatorworld extends CJFM_Command
                     {
                         if ("list".equalsIgnoreCase(args[1]))
                         {
-                            playerMsg("DonatorWorld guest list: " + CJFM_DonatorWorld.getInstance().guestListToString());
+                            playerMsg("Donator World guest list: " + CJFM_DonatorWorld.getInstance().guestListToString());
                         }
                         else if ("purge".equalsIgnoreCase(args[1]))
                         {
                             assertCommandPerms(sender, sender_p);
                             CJFM_DonatorWorld.getInstance().purgeGuestList();
-                            TFM_Util.adminAction(sender.getName(), "DonatorWorld guest list purged.", false);
+                            TFM_Util.adminAction(sender.getName(), "Donator World guest list purged.", false);
                         }
                         else
                         {
@@ -113,63 +114,44 @@ public class Command_donatorworld extends CJFM_Command
 
                         if ("add".equalsIgnoreCase(args[1]))
                         {
-                            Player player;
-                            try
+                            final Player player = getPlayer(args[2]);
+
+                            if (player == null)
                             {
-                                player = getPlayer(args[2]);
-                            }
-                            catch (PlayerNotFoundException ex)
-                            {
-                                sender.sendMessage(ex.getMessage());
+                                sender.sendMessage(TotalFreedomMod.PLAYER_NOT_FOUND);
                                 return true;
                             }
 
-                            if (player != null && CJFM_DonatorWorld.getInstance().addGuest(player, sender_p))
+                            if (CJFM_DonatorWorld.getInstance().addGuest(player, sender_p))
                             {
-                                TFM_Util.adminAction(sender.getName(), "DonatorWorld guest added: " + player.getName(), false);
+                                TFM_Util.adminAction(sender.getName(), "Donator World guest added: " + player.getName(), false);
                             }
                             else
                             {
                                 playerMsg("Could not add player to guest list.");
                             }
                         }
-                        else if (TFM_Util.isRemoveCommand(args[1]))
+                        else if ("remove".equals(args[1]))
                         {
-                            Player player;
-                            try
-                            {
-                                player = getPlayer(args[2]);
-                            }
-                            catch (PlayerNotFoundException ex)
-                            {
-                                sender.sendMessage(ex.getMessage());
-                                return true;
-                            }
-
-                            
+                            final Player player = CJFM_DonatorWorld.getInstance().removeGuest(args[2]);
                             if (player != null)
                             {
-                                CJFM_DonatorWorld.getInstance().removeGuest(player);
-
+                                TFM_Util.adminAction(sender.getName(), "Doantor World guest removed: " + player.getName(), false);
                             }
+                            else
                             {
-                                TFM_Util.adminAction(sender.getName(), "DonatorWorld guest removed: " + player.getName(), false);
+                                playerMsg("Can't find guest entry for: " + args[2]);
                             }
                         }
-                        
                         else
                         {
-                            playerMsg("Could not add player to guest list.");
                             return false;
                         }
+                    }
 
+                    break;
                 }
-
-                break;
-            }
-        
-    
-    case TIME:
+                case TIME:
                 {
                     assertCommandPerms(sender, sender_p);
 
@@ -179,7 +161,7 @@ public class Command_donatorworld extends CJFM_Command
                         if (timeOfDay != null)
                         {
                             CJFM_DonatorWorld.getInstance().setTimeOfDay(timeOfDay);
-                            playerMsg("DonatorWorld time set to: " + timeOfDay.name());
+                            playerMsg("Donator World time set to: " + timeOfDay.name());
                         }
                         else
                         {
@@ -203,7 +185,7 @@ public class Command_donatorworld extends CJFM_Command
                         if (weatherMode != null)
                         {
                             CJFM_DonatorWorld.getInstance().setWeatherMode(weatherMode);
-                            playerMsg("DonatorWorld weather set to: " + weatherMode.name());
+                            playerMsg("Donator World weather set to: " + weatherMode.name());
                         }
                         else
                         {
@@ -223,33 +205,27 @@ public class Command_donatorworld extends CJFM_Command
                 }
             }
         }
-        catch (PermissionDeniedException ex
-
-    
-    
-        )
+        catch (PermissionDeniedException ex)
         {
             sender.sendMessage(ex.getMessage());
-    }
+        }
 
-return true;
+        return true;
     }
 
     private void assertCommandPerms(CommandSender sender, Player sender_p) throws PermissionDeniedException
     {
-        if (!(sender instanceof Player) || sender_p == null || !CJFM_DonatorList.isUserDonator(sender))
+        if (!(sender instanceof Player) || sender_p == null || !TFM_AdminList.isSuperAdmin(sender))
         {
             throw new PermissionDeniedException(TotalFreedomMod.MSG_NO_PERMS);
-        
-
-}
+        }
     }
 
     private class PermissionDeniedException extends Exception
-{
-    public PermissionDeniedException(String string)
     {
-        super(string);
+        public PermissionDeniedException(String string)
+        {
+            super(string);
+        }
     }
-}
 }

@@ -17,7 +17,8 @@ public enum CJFM_ConfigEntry
     EMERGANCY_MODE_OPEN(Boolean.class, "emergancy_mode_open"),
     DEVELOPMENT_MODE(Boolean.class, "dev_mode"),
     //
-    DHAMMER_MODE(Boolean.class, "dhammer_mode");       
+    DHAMMER_MODE(Boolean.class, "dhammer_mode"),  
+    ENABLE_ADMINWORLD(Boolean.class, "adminmode"); 
     //
     private final Class<?> type;
     private final String configName;

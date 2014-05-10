@@ -41,7 +41,7 @@ public class Command_invis extends TFM_Command
                 players.add(player.getName());
                 if (smite && !TFM_AdminList.isSuperAdmin(player))
                 {
-                    Command_smite.smite(player, "Invisibility is not allowed.", sender.getName());
+                    player.setHealth(0.0);
                     smites++;
                 }
             }

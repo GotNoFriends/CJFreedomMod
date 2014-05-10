@@ -1,11 +1,12 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
 import me.RyanWild.CJFreedomMod.CJFM_Util;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
-import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
+import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -57,7 +58,7 @@ public class Command_adminworld extends TFM_Command
             {
                 case TELEPORT:
                 {
-                    if (!TFM_ConfigEntry.ENABLE_ADMINWORLD.getBoolean())
+                    if (!CJFM_ConfigEntry.ENABLE_ADMINWORLD.getBoolean())
                     {
                         if (!CJFM_Util.SYSADMINS.contains(sender.getName()) && !CJFM_Util.EXECUTIVES.contains(sender.getName()))
                         {

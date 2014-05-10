@@ -1,18 +1,19 @@
 package me.RyanWild.CJFreedomMod.World;
 
-import me.RyanWild.CJFreedomMod.CJFM_DonatorList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import me.StevenLawson.TotalFreedomMod.World.CleanroomChunkGenerator;
+import me.RyanWild.CJFreedomMod.CJFM_DonatorList;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
-import me.StevenLawson.TotalFreedomMod.World.TFM_CustomWorld;
+import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_GameRuleHandler;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
+import me.StevenLawson.TotalFreedomMod.World.CleanroomChunkGenerator;
+import me.StevenLawson.TotalFreedomMod.World.TFM_CustomWorld;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -26,7 +27,7 @@ public final class CJFM_DonatorWorld extends TFM_CustomWorld
 {
     private static final long CACHE_CLEAR_FREQUENCY = 30L * 1000L; //30 seconds, milliseconds
     private static final long TP_COOLDOWN_TIME = 500L; //0.5 seconds, milliseconds
-    private static final String GENERATION_PARAMETERS = TFM_ConfigEntry.FLATLANDS_GENERATION_PARAMS.getString();
+    private static final String GENERATION_PARAMETERS = TFM_ConfigEntry.FLATLANDS_GENERATE_PARAMS.getString();
     private static final String WORLD_NAME = "donatorworld";
     //
     private final Map<Player, Long> teleportCooldown = new HashMap<Player, Long>();
