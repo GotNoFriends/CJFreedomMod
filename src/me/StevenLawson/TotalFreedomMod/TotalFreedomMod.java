@@ -18,8 +18,7 @@ import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.HTTPD.TFM_HTTPD_Manager;
 import me.StevenLawson.TotalFreedomMod.Listener.*;
-import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
-import me.StevenLawson.TotalFreedomMod.World.TFM_Flatlands;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -52,6 +51,7 @@ public class TotalFreedomMod extends JavaPlugin
     public static final String YOU_ARE_NOT_OP = ChatColor.YELLOW + "You are no longer op!";
     public static final String CAKE_LYRICS = "But there's no sense crying over every mistake. You just keep on trying till you run out of cake.";
     public static final String NOT_FROM_CONSOLE = "This command may not be used from the console.";
+    public static final String PLAYER_NOT_FOUND = ChatColor.GRAY + "Player not found!";
     //
     public static String buildNumber = "1";
     public static String buildDate = TotalFreedomMod.buildDate = TFM_Util.dateToString(new Date());
@@ -88,19 +88,13 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_Log.info("Made by Madgeek1450 and DarthSalamon");
         TFM_Log.info("Compiled " + buildDate + " by " + buildCreator);
 
-        final File[] coreDumps = new File(".").listFiles(new FileFilter()
-        {
-            @Override
-            public boolean accept(File file)
-            {
-                return file.getName().startsWith("java.core");
-            }
-        });
+        TFM_Util.deleteCoreDumps();
 
-        for (File dump : coreDumps)
+        if (!TFM_ServerInterface.COMPILE_NMS_VERSION.equals(TFM_Util.getNmsVersion()))
         {
-            TFM_Log.info("Removing core dump file: " + dump.getName());
-            dump.delete();
+            TFM_Log.warning(pluginName + " is compiled for " + TFM_ServerInterface.COMPILE_NMS_VERSION + " but the server is running "
+                    + "version " + TFM_Util.getNmsVersion() + "!");
+            TFM_Log.warning("This might result in unexpected behaviour!");
         }
 
         // Admin list
@@ -193,7 +187,7 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_ServiceChecker.getInstance().start();
         TFM_HTTPD_Manager.getInstance().start();
 
-        TFM_Log.info("Version " + pluginVersion + " enabled");
+        TFM_Log.info("Version " + pluginVersion + " for " + TFM_ServerInterface.COMPILE_NMS_VERSION + " enabled");
 
         // Delayed Start:
         new BukkitRunnable()

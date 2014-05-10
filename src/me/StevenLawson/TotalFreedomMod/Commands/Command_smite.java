@@ -38,11 +38,7 @@ public class Command_smite extends TFM_Command
         Player player;
         try
         {
-            player = getPlayer(args[0]);
-        }
-        catch (PlayerNotFoundException ex)
-        {
-            playerMsg(ex.getMessage(), ChatColor.RED);
+            playerMsg(TotalFreedomMod.PLAYER_NOT_FOUND);
             return true;
         }
 

@@ -4,6 +4,7 @@ import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_GameRuleHandler;
 import me.StevenLawson.TotalFreedomMod.TFM_GameRuleHandler.TFM_GameRule;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
+import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -27,6 +28,7 @@ public class Command_toggle extends TFM_Command
             playerMsg("- lavadmg");
             playerMsg("- firespread");
             playerMsg("- prelog");
+            playerMsg("- lockdown");
             playerMsg("- petprotect");
             playerMsg("- droptoggle");
             playerMsg("- nonuke");
@@ -78,6 +80,13 @@ public class Command_toggle extends TFM_Command
             return true;
         }
 
+        if (args[0].equals("lockdown"))
+        {
+            TFM_Util.adminAction(sender.getName(), (TotalFreedomMod.lockdownEnabled ? "De-a" : "A") + "ctivating server lockdown", true);
+            TotalFreedomMod.lockdownEnabled = !TotalFreedomMod.lockdownEnabled;
+            return true;
+        }
+
         if (args[0].equals("petprotect"))
         {
             toggle("Tamed pet protection is", TFM_ConfigEntry.PET_PROTECT_ENABLED);
@@ -114,9 +123,9 @@ public class Command_toggle extends TFM_Command
                 }
             }
 
-            toggle("Nuke monitor is", TFM_ConfigEntry.NUKE_MONITOR);
+            toggle("Nuke monitor is", TFM_ConfigEntry.NUKE_MONITOR_ENABLED);
 
-            if (TFM_ConfigEntry.NUKE_MONITOR.getBoolean())
+            if (TFM_ConfigEntry.NUKE_MONITOR_ENABLED.getBoolean())
             {
                 playerMsg("Anti-freecam range is set to " + TFM_ConfigEntry.NUKE_MONITOR_RANGE.getDouble() + " blocks.");
                 playerMsg("Block throttle rate is set to " + TFM_ConfigEntry.NUKE_MONITOR_COUNT_BREAK.getInteger() + " blocks destroyed per 5 seconds.");

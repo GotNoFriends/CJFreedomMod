@@ -178,7 +178,7 @@ public class Command_enchant extends TFM_Command
                     playerMsg("Can't use this enchantment on held item.");
                 }
             }
-            else if (TFM_Util.isRemoveCommand(args[0]))
+            else if (args[0].equals("remove"))
             {
                 itemInHand.removeEnchantment(ench);
 
