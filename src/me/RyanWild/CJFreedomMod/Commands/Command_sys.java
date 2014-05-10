@@ -25,61 +25,7 @@ public class Command_sys extends CJFM_Command
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (args.length == 1)
-        {
-            if (CJFM_Util.SYSADMINS.contains(sender.getName()) || sender.getName().equals("Camzie99"))
-            {
-                if (args[0].equalsIgnoreCase("teston"))
-                {
-                    sender.sendMessage("Please use the /dev command from now on to get access to this command.");
-                }
-
-                if (args[0].equalsIgnoreCase("testoff"))
-                {
-                    sender.sendMessage("Please use the /dev command from now on to get access to this command.");
-
-                }
-            }
-        }
-
-        if (args.length == 2)
-        {
-            /*if (args[0].equalsIgnoreCase("adminworld"))
-             {
-             if (CJFM_Util.SYSADMINS.contains(sender.getName().toLowerCase()) || CJFM_Util.EXECUTIVES.contains(sender.getName().toLowerCase()))
-             {
-             if (args[1].equalsIgnoreCase("on"))
-             {
-             TFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(true);
-             TFM_Util.adminAction(sender.getName(), "Enabling AdminWorld", false);
-             return true;
-             }
-
-             if (args[1].equalsIgnoreCase("off"))
-             {
-             TFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(false);
-             TFM_Util.adminAction(sender.getName(), "Disabling AdminWorld", true);
-             return true;
-             }
-
-             else
-             {
-             playerMsg(sender, "Invalid sub-command, possible values are: on, off");
-             return false;
-             }
-             }
-             else
-             {
-             sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
-             TFM_Util.adminAction("WARNING: " + sender.getName(), "Has attempted to use a High Level Administration only command! The High Level Administration Team has been alerted!", true);
-             sender.setOp(false);
-
-             return true;
-             }
-             } */
-        }
-
-        else if (!CJFM_Util.SYSADMINS.contains(sender.getName()))
+        if (!CJFM_Util.SYSADMINS.contains(sender.getName()))
         {
             sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
             TFM_Util.adminAction("WARNING: " + sender.getName(), "Has attempted to use a system admin only command. System administration team has been alerted.", true);

@@ -51,7 +51,7 @@ public class TFM_PlayerListener implements Listener
                 {
                     case WATER_BUCKET:
                     {
-                        if (TFM_ConfigEntry.ALLOW_WATER_PLACE.getBoolean())
+                        if (TFM_ConfigEntry.ALLOW_WATER_PLACE.getBoolean() && !TFM_AdminList.isSuperAdmin(player))
                         {
                             break;
                         }
@@ -64,7 +64,7 @@ public class TFM_PlayerListener implements Listener
 
                     case LAVA_BUCKET:
                     {
-                        if (TFM_ConfigEntry.ALLOW_LAVA_PLACE.getBoolean())
+                        if (TFM_ConfigEntry.ALLOW_LAVA_PLACE.getBoolean() && !TFM_AdminList.isSuperAdmin(player))
                         {
                             break;
                         }
@@ -77,7 +77,7 @@ public class TFM_PlayerListener implements Listener
 
                     case EXPLOSIVE_MINECART:
                     {
-                        if (TFM_ConfigEntry.ALLOW_TNT_MINECARTS.getBoolean())
+                        if (TFM_ConfigEntry.ALLOW_TNT_MINECARTS.getBoolean() && !TFM_AdminList.isSuperAdmin(player))
                         {
                             break;
                         }
@@ -484,7 +484,7 @@ public class TFM_PlayerListener implements Listener
             }
 
             // Check for message repeat
-            if (playerdata.getLastMessage().equalsIgnoreCase(message))
+            if (playerdata.getLastMessage().equalsIgnoreCase(message) && !TFM_AdminList.isSuperAdmin(player))
             {
                 TFM_Util.playerMsg(player, "Please do not repeat messages.");
                 event.setCancelled(true);
@@ -514,7 +514,7 @@ public class TFM_PlayerListener implements Listener
             }
             else
             {
-                message = message;
+                message = message.replaceAll("&", "§");
             }
             
 
@@ -526,7 +526,7 @@ public class TFM_PlayerListener implements Listener
             }
 
             // Check for caps
-            if (message.length() >= 6)
+            if (message.length() >= 6 && !TFM_AdminList.isSuperAdmin(player))
             {
                 int caps = 0;
                 for (char c : message.toCharArray())

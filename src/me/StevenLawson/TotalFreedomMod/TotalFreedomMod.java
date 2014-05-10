@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import me.RyanWild.CJFreedomMod.CJFreedomMod;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandHandler;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandLoader;
 import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
@@ -132,6 +131,7 @@ public class TotalFreedomMod extends JavaPlugin
         //CJFreedomMod Listeners - DO NOT CHANGE OR I SHALL MURDER YOU
         final PluginManager cjpm = server.getPluginManager();
         cjpm.registerEvents(new CJFM_PlayerListener(), plugin);
+        cjpm.registerEvents(new CJFM_TelnetListener(), plugin);
 
         try
         {

@@ -19,7 +19,7 @@ public enum TFM_PlayerRank
     CONSOLE("The " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]"),
     
     //CJFM
-    EXECUTIVE("an " + ChatColor.RED + "Executive", ChatColor.RED + "[Executive]"),
+    EXECUTIVE("an " + ChatColor.BLUE + "Executive", ChatColor.BLUE + "[Executive]"),
     SYSADMIN("a " + ChatColor.DARK_RED + "System Admin", ChatColor.DARK_RED + "[Sys-Admin]");
     
     private String loginMessage;

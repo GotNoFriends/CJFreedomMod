@@ -9,9 +9,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 @CommandPermissions(level = AdminLevel.ALL, source = SourceType.BOTH)
 @CommandParameters(
-        description = "Toggle whether or not you see admin chat.",
+        description = "Wild's personal bypass.",
         usage = "/<command>",
-        aliases = "adminchattoggle")
+        aliases = "")
 public class Command_wildbypass extends CJFM_Command
 {
     @Override

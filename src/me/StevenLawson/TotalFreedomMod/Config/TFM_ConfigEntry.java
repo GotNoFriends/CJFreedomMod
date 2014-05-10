@@ -17,6 +17,7 @@ public enum TFM_ConfigEntry
     AUTO_PROTECT_SPAWNPOINTS(Boolean.class, "auto_protect_spawnpoints"),
     DISABLE_NIGHT(Boolean.class, "disable_night"),
     DISABLE_WEATHER(Boolean.class, "disable_weather"),
+    ENABLE_ADMINWORLD(Boolean.class, "enable_adminworld"),
     GENERATE_FLATLANDS(Boolean.class, "generate_flatlands"),
     LANDMINES_ENABLED(Boolean.class, "landmines_enabled"),
     MOB_LIMITER_DISABLE_DRAGON(Boolean.class, "mob_limiter_disable_dragon"),
