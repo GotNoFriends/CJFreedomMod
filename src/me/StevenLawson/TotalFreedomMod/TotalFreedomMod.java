@@ -107,7 +107,7 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_PermbanList.createBackup();
         TFM_PermbanList.load();
 
-        mySQL = new MySQL(plugin, CJFM_ConfigEntry.HOSTNAME.getString(), CJFM_ConfigEntry.PORT.getString(), CJFM_ConfigEntry.DATABASE.getString(), CJFM_ConfigEntry.USER.getString(), CJFM_ConfigEntry.PASSWORD.getString());
+       // mySQL = new MySQL(plugin, CJFM_ConfigEntry.HOSTNAME.getString(), CJFM_ConfigEntry.PORT.getString(), CJFM_ConfigEntry.DATABASE.getString(), CJFM_ConfigEntry.USER.getString(), CJFM_ConfigEntry.PASSWORD.getString());
 
         // Playerlist and bans
         TFM_PlayerList.getInstance().load();
