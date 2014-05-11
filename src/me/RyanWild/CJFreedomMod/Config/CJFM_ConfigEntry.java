@@ -18,7 +18,7 @@ public enum CJFM_ConfigEntry
     DEVELOPMENT_MODE(Boolean.class, "dev_mode"),
     //
     DHAMMER_MODE(Boolean.class, "dhammer_mode"),  
-    ENABLE_ADMINWORLD(Boolean.class, "adminmode"); 
+    ENABLE_ADMINWORLD(Boolean.class, "adminworld"); 
     //
     private final Class<?> type;
     private final String configName;

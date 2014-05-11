@@ -9,12 +9,15 @@ dhammer_mode: false
 # Admin World
 adminmode: true
 
-# Admin-Only Mode
+# Developer Mode
 emergancy_mode: false
 emergancy_mode_open: false
 
 #Development Mode
-dev_mode: true
+dev_mode: false
+
+# Adminworld Enabled
+adminworld: true
 
 # API Access
 panel_api_key: 'Cre9r97ug4CRuvEPRU446Kawe'

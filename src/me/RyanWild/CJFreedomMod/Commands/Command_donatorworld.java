@@ -1,4 +1,4 @@
-package me.RyanWild.CJFreedomMod.Commands;
+/* package me.RyanWild.CJFreedomMod.Commands;
 
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
@@ -229,3 +229,4 @@ public class Command_donatorworld extends CJFM_Command
         }
     }
 }
+*/
