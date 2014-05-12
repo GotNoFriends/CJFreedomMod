@@ -1,9 +1,9 @@
-clean_threshold_hours: 850
-donators:
-  darthsalamon:
+donors:
+  b3c3b05a-a52d-33a6-a9c6-6e5063e00f0a:
+    last_login_name: DarthSalamon
+    is_activated: false
+    is_senior_donor: false
     ips:
-    - 80.60.73.144
-    - 213.211.159.63
-    last_login: Fri, 9 Nov 2012 03:09:14 -0500
-    custom_login_message: ''
-    is_activated: true
+    - 127.0.0.1
+    last_login: Tue, 15 Apr 2014 16:08:39 +0200
+    custom_login_message: the &5Lead Developer&b!

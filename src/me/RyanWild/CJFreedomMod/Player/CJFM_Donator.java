@@ -37,7 +37,7 @@ public class CJFM_Donator
         this.ips = section.getStringList("ips");
         this.lastLogin = TFM_Util.stringToDate(section.getString("last_login", TFM_Util.dateToString(new Date(0L))));
         this.loginMessage = section.getString("custom_login_message", "");
-        this.isSeniorDonor = section.getBoolean("is_senior_admin", false);
+        this.isSeniorDonor = section.getBoolean("is_senior_donor", false);
         this.isActivated = section.getBoolean("is_activated", true);
     }
 
@@ -51,7 +51,7 @@ public class CJFM_Donator
         output.append("- IPs: ").append(StringUtils.join(ips, ", ")).append("\n");
         output.append("- Last Login: ").append(TFM_Util.dateToString(lastLogin)).append("\n");
         output.append("- Custom Login Message: ").append(loginMessage).append("\n");
-        output.append("- Is Senior Admin: ").append(isSeniorDonor).append("\n");
+        output.append("- Is Senior Donor: ").append(isSeniorDonor).append("\n");
         output.append("- Is Activated: ").append(isActivated);
 
         return output.toString();

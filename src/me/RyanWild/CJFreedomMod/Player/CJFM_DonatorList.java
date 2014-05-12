@@ -106,7 +106,7 @@ public class CJFM_DonatorList
         final TFM_Config config = new TFM_Config(TotalFreedomMod.plugin, CJFreedomMod.DONATOR_FILE, true);
         config.load();
 
-        // Parse old superadmins
+        // Parse old donors
         if (config.isConfigurationSection("donators"))
         {
             parseOldConfig(config);
@@ -114,7 +114,7 @@ public class CJFM_DonatorList
 
         if (!config.isConfigurationSection("Donors"))
         {
-            TFM_Log.warning("Missing admins section in superadmin.yml.");
+            TFM_Log.warning("Missing donors section in donor.yml.");
             return;
         }
 
@@ -124,19 +124,19 @@ public class CJFM_DonatorList
         {
             if (!TFM_Util.isUniqueId(uuidString))
             {
-                TFM_Log.warning("Invalid Unique ID: " + uuidString + " in superadmin.yml, ignoring");
+                TFM_Log.warning("Invalid Unique ID: " + uuidString + " in donor.yml, ignoring");
                 continue;
             }
 
             final UUID uuid = UUID.fromString(uuidString);
 
-            final CJFM_Donator superadmin = new CJFM_Donator(uuid, section.getConfigurationSection(uuidString));
-            donorList.put(uuid, superadmin);
+            final CJFM_Donator donor = new CJFM_Donator(uuid, section.getConfigurationSection(uuidString));
+            donorList.put(uuid, donor);
         }
 
         updateIndexLists();
 
-        TFM_Log.info("Loaded " + donorList.size() + " admins (" + donorUUIDs.size() + " active) and " + donorIps.size() + " IPs.");
+        TFM_Log.info("Loaded " + donorList.size() + " donors (" + donorUUIDs.size() + " active) and " + donorIps.size() + " IPs.");
     }
 
     public static void createBackup()
@@ -180,14 +180,14 @@ public class CJFM_DonatorList
 
     private static void parseOldConfig(TFM_Config config)
     {
-        TFM_Log.info("Old superadmin configuration found, parsing...");
+        TFM_Log.info("Old donor configuration found, parsing...");
 
-        final ConfigurationSection section = config.getConfigurationSection("superadmins");
+        final ConfigurationSection section = config.getConfigurationSection("donors");
 
         int counter = 0;
         int errors = 0;
 
-        for (String admin : config.getConfigurationSection("superadmins").getKeys(false))
+        for (String admin : config.getConfigurationSection("donors").getKeys(false))
         {
             final OfflinePlayer player = Bukkit.getOfflinePlayer(admin);
 
@@ -200,22 +200,20 @@ public class CJFM_DonatorList
 
             final String uuid = player.getUniqueId().toString();
 
-            config.set("admins." + uuid + ".last_login_name", player.getName());
-            config.set("admins." + uuid + ".is_activated", section.getBoolean(admin + ".is_activated"));
-            config.set("admins." + uuid + ".is_telnet_admin", section.getBoolean(admin + ".is_telnet_admin"));
-            config.set("admins." + uuid + ".is_senior_admin", section.getBoolean(admin + ".is_senior_admin"));
-            config.set("admins." + uuid + ".last_login", section.getString(admin + ".last_login"));
-            config.set("admins." + uuid + ".custom_login_message", section.getString(admin + ".custom_login_message"));
-            config.set("admins." + uuid + ".console_aliases", section.getStringList(admin + ".console_aliases"));
-            config.set("admins." + uuid + ".ips", section.getStringList(admin + ".ips"));
+            config.set("donors." + uuid + ".last_login_name", player.getName());
+            config.set("donors." + uuid + ".is_activated", section.getBoolean(admin + ".is_activated"));
+            config.set("donors." + uuid + ".is_senior_donor", section.getBoolean(admin + ".is_senior_donor"));
+            config.set("donors." + uuid + ".last_login", section.getString(admin + ".last_login"));
+            config.set("donors." + uuid + ".custom_login_message", section.getString(admin + ".custom_login_message"));
+            config.set("donors." + uuid + ".ips", section.getStringList(admin + ".ips"));
 
             counter++;
         }
 
-        config.set("superadmins", null);
+        config.set("donors", null);
         config.save();
 
-        TFM_Log.info("Done! " + counter + " admins parsed, " + errors + " errors");
+        TFM_Log.info("Done! " + counter + " donors parsed, " + errors + " errors");
     }
 
     public static void save()
@@ -229,14 +227,14 @@ public class CJFM_DonatorList
             Entry<UUID, CJFM_Donator> pair = it.next();
 
             UUID uuid = pair.getKey();
-            CJFM_Donator superadmin = pair.getValue();
+            CJFM_Donator donor = pair.getValue();
 
-            config.set("donors." + uuid + ".last_login_name", superadmin.getLastLoginName());
-            config.set("donors." + uuid + ".is_activated", superadmin.isActivated());
-            config.set("donors." + uuid + ".is_senior_admin", superadmin.isSeniorDonor());
-            config.set("donors." + uuid + ".last_login", TFM_Util.dateToString(superadmin.getLastLogin()));
-            config.set("donors." + uuid + ".custom_login_message", superadmin.getCustomLoginMessage());
-            config.set("donors." + uuid + ".ips", TFM_Util.removeDuplicates(superadmin.getIps()));
+            config.set("donors." + uuid + ".last_login_name", donor.getLastLoginName());
+            config.set("donors." + uuid + ".is_activated", donor.isActivated());
+            config.set("donors." + uuid + ".is_senior_donor", donor.isSeniorDonor());
+            config.set("donors." + uuid + ".last_login", TFM_Util.dateToString(donor.getLastLogin()));
+            config.set("donors." + uuid + ".custom_login_message", donor.getCustomLoginMessage());
+            config.set("donors." + uuid + ".ips", TFM_Util.removeDuplicates(donor.getIps()));
         }
 
         config.save();
@@ -286,23 +284,23 @@ public class CJFM_DonatorList
         while (it.hasNext())
         {
             final Entry<UUID, CJFM_Donator> pair = it.next();
-            final CJFM_Donator superadmin = pair.getValue();
+            final CJFM_Donator donor = pair.getValue();
 
             if (fuzzy)
             {
-                for (String haystackIp : superadmin.getIps())
+                for (String haystackIp : donor.getIps())
                 {
                     if (TFM_Util.fuzzyIpMatch(needleIp, haystackIp, 3))
                     {
-                        return superadmin;
+                        return donor;
                     }
                 }
             }
             else
             {
-                if (superadmin.getIps().contains(needleIp))
+                if (donor.getIps().contains(needleIp))
                 {
-                    return superadmin;
+                    return donor;
                 }
             }
         }
@@ -456,13 +454,13 @@ public class CJFM_DonatorList
 
         if (donorList.containsKey(uuid))
         {
-            final CJFM_Donator superadmin = donorList.get(uuid);
-            superadmin.setActivated(true);
+            final CJFM_Donator donor = donorList.get(uuid);
+            donor.setActivated(true);
 
             if (player instanceof Player)
             {
-                superadmin.setLastLogin(new Date());
-                superadmin.addIp(ip);
+                donor.setLastLogin(new Date());
+                donor.addIp(ip);
             }
             save();
             updateIndexLists();
@@ -471,12 +469,12 @@ public class CJFM_DonatorList
 
         if (ip == null)
         {
-            TFM_Log.severe("Cannot add superadmin: " + TFM_Util.formatPlayer(player));
+            TFM_Log.severe("Cannot add donor: " + TFM_Util.formatPlayer(player));
             TFM_Log.severe("Could not retrieve IP!");
             return;
         }
 
-        final CJFM_Donator superadmin = new CJFM_Donator(
+        final CJFM_Donator donor = new CJFM_Donator(
                 uuid,
                 player.getName(),
                 new Date(),
@@ -484,9 +482,9 @@ public class CJFM_DonatorList
                 false,
                 false,
                 true);
-        superadmin.addIp(ip);
+        donor.addIp(ip);
 
-        donorList.put(uuid, superadmin);
+        donorList.put(uuid, donor);
 
         save();
         updateIndexLists();
@@ -503,8 +501,8 @@ public class CJFM_DonatorList
             return;
         }
 
-        final CJFM_Donator superadmin = donorList.get(uuid);
-        superadmin.setActivated(false);
+        final CJFM_Donator donor = donorList.get(uuid);
+        donor.setActivated(false);
 
         save();
         updateIndexLists();
@@ -516,14 +514,14 @@ public class CJFM_DonatorList
         while (it.hasNext())
         {
             final Entry<UUID, CJFM_Donator> pair = it.next();
-            final CJFM_Donator superadmin = pair.getValue();
+            final CJFM_Donator donor = pair.getValue();
 
-            if (!superadmin.isActivated() || superadmin.isSeniorDonor())
+            if (!donor.isActivated() || donor.isSeniorDonor())
             {
                 continue;
             }
 
-            final Date lastLogin = superadmin.getLastLogin();
+            final Date lastLogin = donor.getLastLogin();
             final long lastLoginHours = TimeUnit.HOURS.convert(new Date().getTime() - lastLogin.getTime(), TimeUnit.MILLISECONDS);
 
         }
