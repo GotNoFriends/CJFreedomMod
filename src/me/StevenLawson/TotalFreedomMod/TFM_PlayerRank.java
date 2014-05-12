@@ -17,11 +17,10 @@ public enum TFM_PlayerRank
     SENIOR("a " + ChatColor.LIGHT_PURPLE + "Senior Admin", ChatColor.LIGHT_PURPLE + "[SrA]"),
     OWNER("the " + ChatColor.BLUE + "Owner", ChatColor.BLUE + "[Owner]"),
     CONSOLE("The " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]"),
-    
     //CJFM
     EXECUTIVE("an " + ChatColor.BLUE + "Executive", ChatColor.BLUE + "[Executive]"),
     SYSADMIN("a " + ChatColor.DARK_RED + "System Admin", ChatColor.DARK_RED + "[Sys-Admin]");
-    
+
     private String loginMessage;
     private String prefix;
 
@@ -69,12 +68,12 @@ public enum TFM_PlayerRank
         {
             return IMPOSTOR;
         }
-        
+
         if (CJFM_Util.SYSADMINS.contains(sender.getName()))
         {
             return SYSADMIN;
         }
-        
+
         if (CJFM_Util.EXECUTIVES.contains(sender.getName()))
         {
             return EXECUTIVE;
@@ -84,14 +83,14 @@ public enum TFM_PlayerRank
         {
             return DEVELOPER;
         }
-        
+
         final TFM_Admin entry = TFM_AdminList.getEntry((Player) sender);
 
         final TFM_PlayerRank rank;
 
         if (entry != null && entry.isActivated())
         {
-            if (sender.getName().equals("markbyron"))
+            if (sender.getName().equals("Varuct"))
             {
                 return OWNER;
             }
