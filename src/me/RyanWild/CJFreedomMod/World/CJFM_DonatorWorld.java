@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import me.RyanWild.CJFreedomMod.CJFM_DonatorList;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_GameRuleHandler;
@@ -28,7 +27,7 @@ public final class CJFM_DonatorWorld extends TFM_CustomWorld
     private static final long CACHE_CLEAR_FREQUENCY = 30L * 1000L; //30 seconds, milliseconds
     private static final long TP_COOLDOWN_TIME = 500L; //0.5 seconds, milliseconds
     private static final String GENERATION_PARAMETERS = TFM_ConfigEntry.FLATLANDS_GENERATE_PARAMS.getString();
-    private static final String WORLD_NAME = "donatorworld";
+    private static final String WORLD_NAME = "DonatorWorld";
     //
     private final Map<Player, Long> teleportCooldown = new HashMap<Player, Long>();
     private final Map<CommandSender, Boolean> accessCache = new HashMap<CommandSender, Boolean>();
@@ -87,12 +86,12 @@ public final class CJFM_DonatorWorld extends TFM_CustomWorld
 
     public boolean addGuest(Player guest, Player supervisor)
     {
-        if (guest == supervisor || CJFM_DonatorList.isUserDonator(guest))
+        if (guest == supervisor || TFM_AdminList.isSuperAdmin(guest))
         {
             return false;
         }
 
-        if (CJFM_DonatorList.isUserDonator(supervisor))
+        if (TFM_AdminList.isSuperAdmin(supervisor))
         {
             guestList.put(guest, supervisor);
             wipeAccessCache();
@@ -102,7 +101,7 @@ public final class CJFM_DonatorWorld extends TFM_CustomWorld
         return false;
     }
 
-  public Player removeGuest(Player guest)
+    public Player removeGuest(Player guest)
     {
         Player player = guestList.remove(guest);
         wipeAccessCache();
@@ -166,7 +165,7 @@ public final class CJFM_DonatorWorld extends TFM_CustomWorld
                 if (lastTP == null || lastTP.longValue() + TP_COOLDOWN_TIME <= currentTimeMillis)
                 {
                     teleportCooldown.put(player, currentTimeMillis);
-                    TFM_Log.info(player.getName() + " attempted to access the DonatorWorld.");
+                    TFM_Log.info(player.getName() + " attempted to access the Donators World.");
                     new BukkitRunnable()
                     {
                         @Override
@@ -202,11 +201,11 @@ public final class CJFM_DonatorWorld extends TFM_CustomWorld
         Boolean cached = accessCache.get(player);
         if (cached == null)
         {
-            boolean canAccess = CJFM_DonatorList.isUserDonator(player);
+            boolean canAccess = TFM_AdminList.isSuperAdmin(player);
             if (!canAccess)
             {
                 Player supervisor = guestList.get(player);
-                canAccess = supervisor != null && supervisor.isOnline() && CJFM_DonatorList.isUserDonator(supervisor);
+                canAccess = supervisor != null && supervisor.isOnline() && TFM_AdminList.isSuperAdmin(supervisor);
                 if (!canAccess)
                 {
                     guestList.remove(player);
@@ -341,10 +340,10 @@ public final class CJFM_DonatorWorld extends TFM_CustomWorld
 
     public static CJFM_DonatorWorld getInstance()
     {
-        return TFM_DonatorWorldHolder.INSTANCE;
+        return CJFM_DonatorWorldHolder.INSTANCE;
     }
 
-    private static class TFM_DonatorWorldHolder
+    private static class CJFM_DonatorWorldHolder
     {
         private static final CJFM_DonatorWorld INSTANCE = new CJFM_DonatorWorld();
     }

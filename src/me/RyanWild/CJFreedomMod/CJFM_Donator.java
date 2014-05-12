@@ -1,114 +1,125 @@
 package me.RyanWild.CJFreedomMod;
 
+import me.StevenLawson.TotalFreedomMod.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import me.StevenLawson.TotalFreedomMod.TFM_Log;
-import me.StevenLawson.TotalFreedomMod.TFM_Util;
+import java.util.UUID;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class CJFM_Donator
 {
-    private final String name;
-    private final String custom_login_message;
-    private final boolean is_senior_donator;
-    private final List<String> console_aliases;
-    private List<String> ips;
-    private Date last_login;
-    private boolean is_activated;
+    private final UUID uuid;
+    private String lastLoginName;
+    private final String loginMessage;
+    private final boolean isSeniorDonor;
+    private final List<String> ips;
+    private Date lastLogin;
+    private boolean isActivated;
 
-    public CJFM_Donator(String name, List<String> ips, Date last_login, String custom_login_message, boolean is_senior_donator, List<String> console_aliases, boolean is_activated)
+    public CJFM_Donator(UUID uuid, String lastLoginName, Date lastLogin, String loginMessage, boolean isSeniorDonor, boolean isTelnetAdmin, boolean isActivated)
     {
-        this.name = name.toLowerCase();
-        this.ips = ips;
-        this.last_login = last_login;
-        this.custom_login_message = custom_login_message;
-        this.is_senior_donator = is_senior_donator;
-        this.console_aliases = console_aliases;
-        this.is_activated = is_activated;
+        this.uuid = uuid;
+        this.lastLoginName = lastLoginName;
+        this.ips = new ArrayList<String>();
+        this.lastLogin = lastLogin;
+        this.loginMessage = loginMessage;
+        this.isSeniorDonor = isSeniorDonor;
+        this.isActivated = isActivated;
     }
 
-    public CJFM_Donator(String name, ConfigurationSection section)
+    public CJFM_Donator(UUID uuid, ConfigurationSection section)
     {
-        this.name = name.toLowerCase();
+        this.uuid = uuid;
+        this.lastLoginName = section.getString("last_login_name");
         this.ips = section.getStringList("ips");
-        this.last_login = TFM_Util.stringToDate(section.getString("last_login", TFM_Util.dateToString(new Date(0L))));
-        this.custom_login_message = section.getString("custom_login_message", "");
-        this.is_senior_donator = section.getBoolean("is_senior_donator", false);
-        this.console_aliases = section.getStringList("console_aliases");
-        this.is_activated = section.getBoolean("is_activated", true);
+        this.lastLogin = TFM_Util.stringToDate(section.getString("last_login", TFM_Util.dateToString(new Date(0L))));
+        this.loginMessage = section.getString("custom_login_message", "");
+        this.isSeniorDonor = section.getBoolean("is_senior_admin", false);
+        this.isActivated = section.getBoolean("is_activated", true);
     }
 
     @Override
     public String toString()
     {
-        StringBuilder output = new StringBuilder();
+        final StringBuilder output = new StringBuilder();
 
-        try
-        {
-            output.append("Name: ").append(this.name).append("\n");
-            output.append("- IPs: ").append(StringUtils.join(this.ips, ", ")).append("\n");
-            output.append("- Last Login: ").append(TFM_Util.dateToString(this.last_login)).append("\n");
-            output.append("- Custom Login Message: ").append(this.custom_login_message).append("\n");
-            output.append("- Is Senior Donator: ").append(this.is_senior_donator).append("\n");
-            output.append("- Console Aliases: ").append(StringUtils.join(this.console_aliases, ", ")).append("\n");
-            output.append("- Is Activated: ").append(this.is_activated);
-        }
-        catch (Exception ex)
-        {
-            TFM_Log.severe(ex);
-        }
+        output.append("UUID: ").append(uuid.toString()).append("\n");
+        output.append("- Last Login Name: ").append(lastLoginName).append("\n");
+        output.append("- IPs: ").append(StringUtils.join(ips, ", ")).append("\n");
+        output.append("- Last Login: ").append(TFM_Util.dateToString(lastLogin)).append("\n");
+        output.append("- Custom Login Message: ").append(loginMessage).append("\n");
+        output.append("- Is Senior Admin: ").append(isSeniorDonor).append("\n");
+        output.append("- Is Activated: ").append(isActivated);
 
         return output.toString();
     }
 
-    public String getName()
+    public UUID getUniqueId()
     {
-        return name;
+        return uuid;
+    }
+
+    public void setLastLoginName(String lastLoginName)
+    {
+        this.lastLoginName = lastLoginName;
+    }
+
+    public String getLastLoginName()
+    {
+        return lastLoginName;
     }
 
     public List<String> getIps()
     {
-        return ips;
+        return Collections.unmodifiableList(ips);
+    }
+
+    public void addIp(String ip)
+    {
+        if (!ips.contains(ip))
+        {
+            ips.add(ip);
+        }
+    }
+
+    public void removeIp(String ip)
+    {
+        if (ips.contains(ip))
+        {
+            ips.remove(ip);
+        }
     }
 
     public Date getLastLogin()
     {
-        return last_login;
+        return lastLogin;
     }
 
     public String getCustomLoginMessage()
     {
-        return custom_login_message;
+        return loginMessage;
     }
 
-    public boolean isSeniorDonator()
+    public boolean isSeniorDonor()
     {
-        return is_senior_donator;
+        return isSeniorDonor;
     }
 
-    public List<String> getConsoleAliases()
+    public void setLastLogin(Date lastLogin)
     {
-        return console_aliases;
-    }
-
-    public void setIps(List<String> ips)
-    {
-        this.ips = ips;
-    }
-
-    public void setLastLogin(Date last_login)
-    {
-        this.last_login = last_login;
+        this.lastLogin = lastLogin;
     }
 
     public boolean isActivated()
     {
-        return is_activated;
+        return isActivated;
     }
 
-    public void setActivated(boolean is_activated)
+    public void setActivated(boolean isActivated)
     {
-        this.is_activated = is_activated;
+        this.isActivated = isActivated;
     }
 }

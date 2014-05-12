@@ -27,8 +27,8 @@ public class CJFreedomMod
     {
         try
         {
-            CJFM_DonatorList.backupSavedList();
-            CJFM_DonatorList.loadDonatorList();
+            CJFM_DonatorList.load();
+            CJFM_DonatorList.createBackup();
         }
         catch (Exception ex)
         {
