@@ -1,4 +1,4 @@
-package me.RyanWild.CJFreedomMod;
+package me.RyanWild.CJFreedomMod.Player;
 
 import me.StevenLawson.TotalFreedomMod.*;
 import java.util.ArrayList;

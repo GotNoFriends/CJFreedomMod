@@ -1,4 +1,4 @@
-package me.RyanWild.CJFreedomMod;
+package me.RyanWild.CJFreedomMod.Player;
 
 import java.io.File;
 import java.util.Collections;
@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import me.RyanWild.CJFreedomMod.CJFreedomMod;
 import me.RyanWild.CJFreedomMod.World.CJFM_DonatorWorld;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_Config;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
