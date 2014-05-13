@@ -155,13 +155,6 @@ public class TFM_AdminList
         TFM_Log.info("Loaded " + adminList.size() + " admins (" + superUUIDs.size() + " active) and " + superIps.size() + " IPs.");
     }
 
-    public static void createBackup()
-    {
-        final File oldYaml = new File(TotalFreedomMod.plugin.getDataFolder(), TotalFreedomMod.SUPERADMIN_FILE);
-        final File newYaml = new File(TotalFreedomMod.plugin.getDataFolder(), TotalFreedomMod.SUPERADMIN_FILE + ".bak");
-        FileUtil.copy(oldYaml, newYaml);
-    }
-
     public static void updateIndexLists()
     {
         superUUIDs.clear();

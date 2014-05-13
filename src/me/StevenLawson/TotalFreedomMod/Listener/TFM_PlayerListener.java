@@ -713,6 +713,7 @@ public class TFM_PlayerListener implements Listener
         }
         else
         {
+            TFM_PlayerList.getInstance().getEntry(player);
             TFM_Log.info("Added new player: " + TFM_Util.formatPlayer(player));
         }
         
@@ -791,5 +792,32 @@ public class TFM_PlayerListener implements Listener
     public void onPlayerLogin(PlayerLoginEvent event)
     {
         TFM_ServerInterface.handlePlayerLogin(event);
+    }
+
+    // Player Tab and auto Tags
+    @EventHandler(priority = EventPriority.HIGH)
+    public static void onPlayerJoinEvent(PlayerJoinEvent event)
+    {
+        Player player = event.getPlayer();
+        if (TFM_Util.DEVELOPERS.contains(player.getName()))
+        {
+            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
+        }
+        else if (TFM_AdminList.isSeniorAdmin(player))
+        {
+            player.setPlayerListName(ChatColor.LIGHT_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&dSenior Admin&8]");
+        }
+        else if (TFM_AdminList.isTelnetAdmin(player, true))
+        {
+            player.setPlayerListName(ChatColor.GREEN + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&2Telnet Admin&8]");
+        }
+        else if (TFM_AdminList.isSuperAdmin(player))
+        {
+            player.setPlayerListName(ChatColor.AQUA + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&BSuper Admin&8]");
+        }
     }
 }

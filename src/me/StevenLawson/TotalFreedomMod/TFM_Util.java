@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import me.StevenLawson.TotalFreedomMod.Config.TFM_Config;
 import net.minecraft.util.org.apache.commons.io.FileUtils;
 
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
@@ -40,6 +41,7 @@ import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.util.FileUtil;
 
 public class TFM_Util
 {
@@ -182,7 +184,7 @@ public class TFM_Util
      * @return The config-friendly IP address.
      * @see #fromEscapedString(String)
      */
-    public static String toEscapedString(String ip) // BukkitLib
+    public static String toEscapedString(String ip) // BukkitLib @ https://github.com/Pravian/BukkitLib
     {
         return ip.trim().replaceAll("\\.", "_");
     }
@@ -199,7 +201,7 @@ public class TFM_Util
      * @return The config-friendly IP address.
      * @see #toEscapedString(String)
      */
-    public static String fromEscapedString(String escapedIp) // BukkitLib
+    public static String fromEscapedString(String escapedIp) // BukkitLib @ https://github.com/Pravian/BukkitLib
     {
         return escapedIp.trim().replaceAll("_", "\\.");
     }
@@ -242,14 +244,14 @@ public class TFM_Util
 
     public static void buildHistory(Location location, int length, TFM_PlayerData playerdata)
     {
-        Block center = location.getBlock();
+        final Block center = location.getBlock();
         for (int xOffset = -length; xOffset <= length; xOffset++)
         {
             for (int yOffset = -length; yOffset <= length; yOffset++)
             {
                 for (int zOffset = -length; zOffset <= length; zOffset++)
                 {
-                    Block block = center.getRelative(xOffset, yOffset, zOffset);
+                    final Block block = center.getRelative(xOffset, yOffset, zOffset);
                     playerdata.insertHistoryBlock(block.getLocation(), block.getType());
                 }
             }
@@ -258,7 +260,7 @@ public class TFM_Util
 
     public static void generateCube(Location location, int length, Material material)
     {
-        Block center = location.getBlock();
+        final Block center = location.getBlock();
         for (int xOffset = -length; xOffset <= length; xOffset++)
         {
             for (int yOffset = -length; yOffset <= length; yOffset++)
@@ -277,7 +279,7 @@ public class TFM_Util
 
     public static void generateHollowCube(Location location, int length, Material material)
     {
-        Block center = location.getBlock();
+        final Block center = location.getBlock();
         for (int xOffset = -length; xOffset <= length; xOffset++)
         {
             for (int yOffset = -length; yOffset <= length; yOffset++)
@@ -312,7 +314,7 @@ public class TFM_Util
                         }
 
                         block.setType(Material.SKULL);
-                        Skull skull = (Skull) block.getState();
+                        final Skull skull = (Skull) block.getState();
                         skull.setSkullType(SkullType.PLAYER);
                         skull.setOwner("DarthSalamon");
                         skull.update();
@@ -686,8 +688,8 @@ public class TFM_Util
 
         try
         {
-            FileOutputStream fos = new FileOutputStream(new File(TotalFreedomMod.plugin.getDataFolder(), TotalFreedomMod.SAVED_FLAGS_FILE));
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            final FileOutputStream fos = new FileOutputStream(new File(TotalFreedomMod.plugin.getDataFolder(), TotalFreedomMod.SAVED_FLAGS_FILE));
+            final ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(flags);
             oos.close();
             fos.close();
@@ -696,6 +698,57 @@ public class TFM_Util
         {
             TFM_Log.severe(ex);
         }
+    }
+
+    public static void createBackups(String file)
+    {
+        final String save = file.split("\\.")[0];
+        final TFM_Config config = new TFM_Config(TotalFreedomMod.plugin, "backup.yml", false);
+        config.load();
+
+        // Daily
+        if (!config.isInt(save + ".daily"))
+        {
+            performBackup(file, "daily");
+            config.set(save + ".daily", TFM_Util.getUnixTime());
+        }
+        else
+        {
+            int lastBackupDaily = config.getInt(save + ".daily");
+
+            if (lastBackupDaily + 3600 * 24 < TFM_Util.getUnixTime())
+            {
+                performBackup(file, "daily");
+                config.set(save + ".daily", TFM_Util.getUnixTime());
+            }
+        }
+
+        // Weekly
+        if (!config.isInt(save + ".weekly"))
+        {
+            performBackup(file, "weekly");
+            config.set(save + ".weekly", TFM_Util.getUnixTime());
+        }
+        else
+        {
+            int lastBackupWeekly = config.getInt(save + ".weekly");
+
+            if (lastBackupWeekly + 3600 * 24 * 7 < TFM_Util.getUnixTime())
+            {
+                performBackup(file, "weekly");
+                config.set(save + ".weekly", TFM_Util.getUnixTime());
+            }
+        }
+
+        config.save();
+    }
+
+    private static void performBackup(String file, String type)
+    {
+        TFM_Log.info("Backing up " + file + " to " + file + "." + type + ".bak");
+        final File oldYaml = new File(TotalFreedomMod.plugin.getDataFolder(), file);
+        final File newYaml = new File(TotalFreedomMod.plugin.getDataFolder(), file + "." + type + ".bak");
+        FileUtil.copy(oldYaml, newYaml);
     }
 
     public static String dateToString(Date date)
@@ -845,6 +898,8 @@ public class TFM_Util
                 Field field = checkClass.getDeclaredField(name);
                 field.setAccessible(true);
                 return (T) field.get(from);
+
+
             }
             catch (NoSuchFieldException ex)
             {
@@ -853,7 +908,9 @@ public class TFM_Util
             {
             }
         }
-        while (checkClass.getSuperclass() != Object.class && ((checkClass = checkClass.getSuperclass()) != null));
+        while (checkClass.getSuperclass() != Object.class
+                && ((checkClass = checkClass.getSuperclass()) != null));
+
         return null;
     }
 
@@ -891,6 +948,8 @@ public class TFM_Util
     {
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         return packageName.substring(packageName.lastIndexOf('.') + 1);
+
+
     }
 
     public static class TFM_EntityWiper
