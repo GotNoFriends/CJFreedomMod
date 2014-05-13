@@ -1,12 +1,16 @@
 package me.RyanWild.CJFreedomMod.Listener;
 
+import java.util.UUID;
 import me.RyanWild.CJFreedomMod.CJFM_Util;
+import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
+import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -22,6 +26,7 @@ public class CJFM_PlayerListener implements Listener
     public static void onPlayerJoinEvent(PlayerJoinEvent event)
     {
         Player player = event.getPlayer();
+        
 
         if (TFM_AdminList.isSuperAdmin(player) && !player.getName().equalsIgnoreCase("varuct"))
         {
