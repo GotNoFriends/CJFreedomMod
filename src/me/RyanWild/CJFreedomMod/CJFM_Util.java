@@ -16,7 +16,10 @@ public class CJFM_Util
     public static final List<String> EXECUTIVES = Arrays.asList("Camzie99", "Kyled1986");
     public static final List<String> SYSADMINS = Arrays.asList("wild1145", "varuct", "thecjgcjg", "darthsalamon");
     public static final List<String> DEVELOPERS = Arrays.asList("Madgeek1450", "DarthSalamon", "wild1145", "Paldiu", "MrPorkSausage", "Camzie99", "hawkeyeshi");
-
+    public static final List<String> FAMOUS = Arrays.asList(
+        "skythekidrs", "antvenom", "deadlox", "stampylongnose", "sethbling", "asfjerome", "dantdm", "pokemondanlv45", "zexyzek", "ssundee",
+        "explodingtnt", "kurtjmac", "xephos", "honeydew", "captainsparklez", "truemu", "jeb_", "grumm", "notch", "chimneyswift", "vechs",
+        "cavemanfilms", "tobyturner", "inthelittlewood", "sips_", "sjin", "lividcofee", "etho");
 
     /* 
 

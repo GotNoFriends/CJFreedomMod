@@ -6,12 +6,15 @@ import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerToggleFlightEvent;
+import org.bukkit.util.Vector;
 
 public class CJFM_PlayerListener implements Listener
 {
@@ -19,7 +22,18 @@ public class CJFM_PlayerListener implements Listener
     public static void onPlayerJoinEvent(PlayerJoinEvent event)
     {
         Player player = event.getPlayer();
-        if (CJFM_Util.SYSADMINS.contains(player.getName()))
+
+        if (TFM_AdminList.isSuperAdmin(player) && !player.getName().equalsIgnoreCase("varuct"))
+        {
+            TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
+        }
+        if (CJFM_Util.FAMOUS.contains(player.getName().toLowerCase()))
+        {
+            player.setPlayerListName("[Fake]" + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&7Fake&8]");
+            TFM_Util.bcastMsg(":WARNING: " + player.getName() + " is completely and utterly FAKE! - This server is in Offline Mode so anybody can join as anyone!", ChatColor.RED);
+        }
+        else if (CJFM_Util.SYSADMINS.contains(player.getName()))
         {
             player.setPlayerListName(ChatColor.DARK_RED + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&4System-Admin&8]");
@@ -50,22 +64,41 @@ public class CJFM_PlayerListener implements Listener
             TFM_PlayerData.getPlayerData(player).setTag("&8[&BSuper Admin&8]");
         }
     }
-    
+
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event)
     {
         Player player = event.getPlayer();
         String command = event.getMessage().toLowerCase().trim();
-        
+
         if (TFM_AdminList.isSuperAdmin(player))
         {
             for (Player pl : Bukkit.getOnlinePlayers())
             {
-                if (TFM_AdminList.isSeniorAdmin(pl) && pl != player)
+                if (TFM_AdminList.isSeniorAdmin(pl) && pl != player && TFM_PlayerData.getPlayerData(pl).cmdspyEnabled())
                 {
                     TFM_Util.playerMsg(pl, player.getName() + ": " + command);
                 }
             }
+        }
+
+        if (command.contains("175:") || command.contains("double_plant:"))
+        {
+            event.setCancelled(true);
+            TFM_Util.bcastMsg(player.getName() + " just attempted to use the crash item! Deal with them appropriately please!", ChatColor.DARK_RED);
+        }
+    }
+
+    @EventHandler
+    public void setFlyOnJump(PlayerToggleFlightEvent event)
+    {
+        final Player player = event.getPlayer();
+        if (event.isFlying() && event.getPlayer().getGameMode() != GameMode.CREATIVE)
+        {
+            player.setFlying(false);
+            Vector jump = player.getLocation().getDirection().multiply(0.8).setY(1.1);
+            player.setVelocity(player.getVelocity().add(jump));
+            event.setCancelled(true);
         }
     }
 }
