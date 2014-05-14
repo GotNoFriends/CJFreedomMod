@@ -52,4 +52,21 @@ public class CJFM_Util
             }
         }
     }
+    
+    public static void donatorChatMessage(CommandSender sender, String message, boolean senderisConsole)
+    {
+        String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;
+        TFM_Log.info("[DonatorChat]" + name + ":" + message);
+        
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            if (CJFM_DonatorList.isSuperDonor(sender) || CJFM_DonatorList.isSeniorDonor(sender) 
+                    || TFM_AdminList.isSuperAdmin(sender))
+            {
+                player.sendMessage("[" + ChatColor.LIGHT_PURPLE + "Donator Chat" + ChatColor.WHITE + "]" + ChatColor.DARK_RED + name + ":" + ChatColor.LIGHT_PURPLE);
+            }
+        }
+        
+        
+    }
 }
