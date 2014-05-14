@@ -75,6 +75,16 @@ public class CJFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.AQUA + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&BSuper Admin&8]");
         }
+        else if (CJFM_DonatorList.isSeniorDonor(player))
+        {
+            player.setPlayerListName(ChatColor.GOLD + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&6[Senior Donator]");
+        }
+        else if (CJFM_DonatorList.isSuperDonor(player))
+        {
+            player.setPlayerListName(ChatColor.YELLOW + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&e[Super Donator]");
+        }
     }
 
     @EventHandler(priority = EventPriority.HIGH)
