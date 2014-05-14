@@ -6,6 +6,7 @@ import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
+import me.confuser.barapi.BarAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -97,6 +98,8 @@ public class Command_doom extends TFM_Command
             {
                 // message
                 TFM_Util.adminAction(sender.getName(), "Banning " + player.getName() + ", IP: " + ip, true);
+                
+                BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.RED + sender.getName() + " Has Doomed " + player.getName(), 60);
 
                 // generate explosion
                 player.getWorld().createExplosion(player.getLocation(), 4F);

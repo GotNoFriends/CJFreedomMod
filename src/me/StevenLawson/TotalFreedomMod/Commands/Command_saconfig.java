@@ -6,6 +6,7 @@ import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_TwitterHandler;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
+import me.confuser.barapi.BarAPI;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -165,6 +166,7 @@ public class Command_saconfig extends TFM_Command
             }
 
             TFM_Util.adminAction(sender.getName(), "Adding " + player.getName() + " to the superadmin list", true);
+            BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.GREEN + sender.getName() + " Has Added " + player.getName() + " To SuperAdmin", 60);
             TFM_AdminList.addSuperadmin(player);
 
             return true;
@@ -195,6 +197,7 @@ public class Command_saconfig extends TFM_Command
             }
 
             TFM_Util.adminAction(sender.getName(), "Removing " + targetName + " from the superadmin list", true);
+            BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.RED + sender.getName() + " Has Removed " + player.getName() + " From SuperAdmin", 60);
             TFM_AdminList.removeSuperadmin(Bukkit.getOfflinePlayer(targetName));
 
             // Twitterbot

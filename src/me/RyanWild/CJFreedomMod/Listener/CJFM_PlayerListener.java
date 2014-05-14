@@ -29,12 +29,12 @@ public class CJFM_PlayerListener implements Listener
     {
         Player player = event.getPlayer();
         
-        for (String username : (List<String>) TFM_ConfigEntry.UNBANNABLE_USERNAMES.getList())
+      /*  for (String username : (List<String>) TFM_ConfigEntry.UNBANNABLE_USERNAMES.getList())
         {
             player.setPlayerListName("[Fake]" + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&7Fake&8]");
             TFM_Util.bcastMsg(":WARNING: " + player.getName() + " is completely and utterly FAKE! - This server is in Offline Mode so anybody can join as anyone!", ChatColor.RED);
-        }
+        } */
 
         if (TFM_AdminList.isSuperAdmin(player) && !player.getName().equalsIgnoreCase("varuct"))
         {

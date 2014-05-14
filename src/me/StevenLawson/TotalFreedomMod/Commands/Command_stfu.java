@@ -4,6 +4,8 @@ import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
+import me.confuser.barapi.BarAPI;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -64,6 +66,8 @@ public class Command_stfu extends TFM_Command
         {
             TFM_Util.adminAction(sender.getName(), "Muting all non-Superadmins", true);
 
+            BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.RED + sender.getName() + " Has muted all non admins!", 60);
+
             TFM_PlayerData playerdata;
             int counter = 0;
             for (Player player : server.getOnlinePlayers())
@@ -112,6 +116,7 @@ public class Command_stfu extends TFM_Command
                 TFM_Util.adminAction(sender.getName(), "Unmuting " + player.getName(), true);
                 playerdata.setMuted(false);
                 playerMsg("Unmuted " + player.getName());
+                BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.GREEN + sender.getName() + " Has Unmuted " + player.getName(), 60);
             }
             else
             {
@@ -120,6 +125,7 @@ public class Command_stfu extends TFM_Command
                     TFM_Util.adminAction(sender.getName(), "Muting " + player.getName(), true);
                     playerdata.setMuted(true);
                     playerMsg("Muted " + player.getName());
+                    BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.RED + sender.getName() + " Has Muted " + player.getName(), 60);
                 }
                 else
                 {

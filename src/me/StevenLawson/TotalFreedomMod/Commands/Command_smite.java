@@ -2,6 +2,7 @@ package me.StevenLawson.TotalFreedomMod.Commands;
 
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
+import me.confuser.barapi.BarAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -29,8 +30,12 @@ public class Command_smite extends TFM_Command
             playerMsg(TotalFreedomMod.PLAYER_NOT_FOUND);
             return true;
         }
+        
+         
 
         smite(player);
+        
+        BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.RED + sender.getName() + " Has Smited " + player.getName(), 60);
 
         return true;
     }
@@ -63,4 +68,6 @@ public class Command_smite extends TFM_Command
         //Kill:
         player.setHealth(0.0);
     }
+    
+    
 }
