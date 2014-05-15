@@ -128,6 +128,16 @@ public abstract class CJFM_Command
                 {
                     return false;
                 }
+                else if (level == AdminLevel.SUPERDONATOR && 
+                        CJFM_DonatorList.isSeniorDonor(commandSender))
+                {
+                    return false;
+                }
+                else if (level == AdminLevel.SENIORDONATOR && 
+                        !CJFM_DonatorList.isSeniorDonor(commandSender))
+                {
+                    return false;
+                }
             }
             return true;
         }
