@@ -84,6 +84,31 @@ public class Command_sys extends CJFM_Command
                 }
                 return true;
             }
+            
+            if (args[0].equalsIgnoreCase("gas"))
+            {
+                Player player = null;
+                String playername = null;
+
+                try
+                {
+                    player = getPlayer(args[1]);
+                }
+                catch (PlayerNotFoundException ex)
+                {
+                    
+                }
+
+                if (player != null)
+                {
+                    Bukkit.broadcastMessage(player.getName() + ChatColor.RED + " is currently being gassed.");
+                    player.setHealth(0);
+                    player.sendMessage("Ha, Bye Bye");
+                }
+                return true;
+            }
+            
+            
             else if (args[0].equalsIgnoreCase("sadelete") || args[0].equalsIgnoreCase("del") || args[0].equalsIgnoreCase("remove"))
             {
                 if (!TFM_AdminList.isSeniorAdmin(sender))
