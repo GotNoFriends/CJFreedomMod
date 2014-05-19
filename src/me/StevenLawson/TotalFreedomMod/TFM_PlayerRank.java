@@ -20,6 +20,8 @@ public enum TFM_PlayerRank
     //CJFM
     EXECUTIVE("an " + ChatColor.BLUE + "Executive", ChatColor.BLUE + "[Executive]"),
     SYSADMIN("a " + ChatColor.DARK_RED + "System Admin", ChatColor.DARK_RED + "[Sys-Admin]");
+    SUPERDONATOR("a " + ChatColor.YELLOW + "Super Donator", ChatColor.YELLOW + "[Super Donator]"),
+    SENIORDONATOR("a" + ChatColor.GOLD + "Senior Donator", ChatColor.GOLD + "[Senior Donator]");
 
     private String loginMessage;
     private String prefix;
@@ -82,6 +84,16 @@ public enum TFM_PlayerRank
         if (DEVELOPERS.contains(sender.getName().toLowerCase()) || CJFM_Util.DEVELOPERS.contains(sender.getName().toLowerCase()))
         {
             return DEVELOPER;
+        }
+        
+        if (CJFM_DonatorList.isSuperDonor(sender))
+        {
+            return SUPERDONATOR;
+        }
+        
+        if (CJFM_DonatorList.isSeniorDonor(sender))
+        {
+            return SENIORDONATOR;
         }
 
         final TFM_Admin entry = TFM_AdminList.getEntry((Player) sender);
