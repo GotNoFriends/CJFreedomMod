@@ -1,18 +1,13 @@
 package me.RyanWild.CJFreedomMod.Listener;
 
-import java.util.List;
-import java.util.UUID;
 import me.RyanWild.CJFreedomMod.CJFM_Util;
 import me.RyanWild.CJFreedomMod.Player.CJFM_DonatorList;
-import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
-import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -109,6 +104,12 @@ public class CJFM_PlayerListener implements Listener
         {
             event.setCancelled(true);
             TFM_Util.bcastMsg(player.getName() + " just attempted to use the crash item! Deal with them appropriately please!", ChatColor.DARK_RED);
+        }
+        
+        if (command.contains("&k"))
+        {
+            event.setCancelled(true);
+            TFM_Util.playerMsg(player, ChatColor.RED + "You are not permitted to use &k!");
         }
     }
 
