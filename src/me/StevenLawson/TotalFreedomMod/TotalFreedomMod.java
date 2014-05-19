@@ -1,6 +1,6 @@
 package me.StevenLawson.TotalFreedomMod;
 
-import husky.mysql.MySQL;
+import me.husky.mysql.MySQL;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
