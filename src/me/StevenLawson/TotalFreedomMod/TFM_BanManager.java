@@ -15,7 +15,7 @@ public class TFM_BanManager
     private static final TFM_BanManager INSTANCE;
     private final List<TFM_Ban> ipBans;
     private final List<TFM_Ban> uuidBans;
-    public final List<UUID> unbannableUUIDs;
+    private final List<UUID> unbannableUUIDs;
 
     static
     {

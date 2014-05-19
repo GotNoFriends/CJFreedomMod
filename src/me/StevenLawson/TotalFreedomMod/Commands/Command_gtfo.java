@@ -41,10 +41,33 @@ public class Command_gtfo extends TFM_Command
 
         // set gamemode to survival:
         player.setGameMode(GameMode.SURVIVAL);
-        
-        player.setHealth(0);
-        
-        player.sendMessage("It has been nice knowing you. Now goodbye. HEIL HITTLER.");
+
+        // clear inventory:
+        player.getInventory().clear();
+
+        // strike with lightning effect:
+        final Location targetPos = player.getLocation();
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int z = -1; z <= 1; z++)
+            {
+                final Location strike_pos = new Location(targetPos.getWorld(), targetPos.getBlockX() + x, targetPos.getBlockY(), targetPos.getBlockZ() + z);
+                targetPos.getWorld().strikeLightning(strike_pos);
+            }
+        }
+
+        // ban IP address:
+        String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
+        TFM_Util.bcastMsg(String.format("Banning: %s, IP: %s.", player.getName(), ip), ChatColor.RED);
+
+        TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ip, player.getName(), sender.getName(), null, reason));
+
+        // ban username:
+        TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName(), sender.getName(), null, reason));
+
+        // kick Player:
+        player.kickPlayer(ChatColor.RED + "GTFO" + (reason != null ? ("\nReason: " + ChatColor.YELLOW + reason) : ""));
+
         return true;
     }
 }

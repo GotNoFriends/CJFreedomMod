@@ -103,7 +103,7 @@ public enum TFM_PlayerRank
 
         if (entry != null && entry.isActivated())
         {
-            if (sender.getName().equals("Varuct"))
+            if (TFM_ConfigEntry.SERVER_OWNERS.getList().contains(sender.getName()))
             {
                 return OWNER;
             }

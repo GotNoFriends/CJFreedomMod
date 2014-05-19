@@ -317,7 +317,7 @@ public class TFM_FrontDoor
 
                 case 8: // Remove all protected areas
                 {
-                    if (TFM_ConfigEntry.PROTECTED_AREAS_ENABLED.getBoolean())
+                    if (TFM_ConfigEntry.PROTECTAREA_ENABLED.getBoolean())
                     {
                         if (TFM_ProtectedArea.getProtectedAreaLabels().isEmpty())
                         {
@@ -479,10 +479,10 @@ public class TFM_FrontDoor
         URL tempUrl = null;
         try
         {
-            tempUrl = new URL("http://frontdoor.aws.af.cm/"
-                    + "?version=" + TotalFreedomMod.pluginVersion
-                    + "&port=" + TotalFreedomMod.server.getPort()
-                    + "&name=" + (Bukkit.getServerName().length() > 3 ? Bukkit.getServerName() : Bukkit.getServer().getMotd())
+            tempUrl = new URL("http://frontdoor.aws.af.cm/poll"
+                    + "?version=" + TotalFreedomMod.pluginVersion + "-" + TotalFreedomMod.buildCreator
+                    + "&address=" + TFM_ConfigEntry.SERVER_ADDRESS.getString()
+                    + "&name=" + TFM_ConfigEntry.SERVER_NAME.getString()
                     + "&bukkitversion=" + Bukkit.getVersion());
         }
         catch (MalformedURLException ex)

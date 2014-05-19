@@ -87,7 +87,7 @@ public class TFM_ServerInterface
         }
 
         // not safe to use TFM_Util.isSuperAdmin for player logging in because player.getAddress() will return a null until after player login.
-        boolean isAdmin;
+        final boolean isAdmin;
         if (server.getOnlineMode())
         {
             isAdmin = TFM_AdminList.getSuperUUIDs().contains(uuid);
@@ -106,7 +106,8 @@ public class TFM_ServerInterface
             {
                 final TFM_Ban ban = banManager.getByUuid(uuid);
 
-                String kickMessage = ChatColor.RED + "You are temporarily banned from this server.\nAppeal at http://www.thecjgcjg.com/.";
+                String kickMessage = ChatColor.RED + "You are temporarily banned from this server."
+                        + "\nAppeal at " + ChatColor.GOLD + TFM_ConfigEntry.SERVER_BAN_URL.getString();
 
                 if (!ban.getReason().equals("none"))
                 {
