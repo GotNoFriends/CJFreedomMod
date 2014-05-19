@@ -1,6 +1,7 @@
 package me.StevenLawson.TotalFreedomMod;
 
 import me.RyanWild.CJFreedomMod.CJFM_Util;
+import me.RyanWild.CJFreedomMod.Player.CJFM_DonatorList;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.DEVELOPERS;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -19,7 +20,7 @@ public enum TFM_PlayerRank
     CONSOLE("The " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]"),
     //CJFM
     EXECUTIVE("an " + ChatColor.BLUE + "Executive", ChatColor.BLUE + "[Executive]"),
-    SYSADMIN("a " + ChatColor.DARK_RED + "System Admin", ChatColor.DARK_RED + "[Sys-Admin]");
+    SYSADMIN("a " + ChatColor.DARK_RED + "System Admin", ChatColor.DARK_RED + "[Sys-Admin]"),
     SUPERDONATOR("a " + ChatColor.YELLOW + "Super Donator", ChatColor.YELLOW + "[Super Donator]"),
     SENIORDONATOR("a" + ChatColor.GOLD + "Senior Donator", ChatColor.GOLD + "[Senior Donator]");
 
