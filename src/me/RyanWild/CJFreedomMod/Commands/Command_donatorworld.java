@@ -1,5 +1,7 @@
-/* package me.RyanWild.CJFreedomMod.Commands;
+package me.RyanWild.CJFreedomMod.Commands;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
@@ -9,7 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.OP, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPERDONATOR, source = SourceType.BOTH)
 @CommandParameters(description = "Go to the Donator World.", usage = "/<command> [guest < list | purge | add <player> | remove <player> > | time <morning | noon | evening | night> | weather <off | on | storm>]")
 public class Command_donatorworld extends CJFM_Command
 {
@@ -209,6 +211,10 @@ public class Command_donatorworld extends CJFM_Command
         {
             sender.sendMessage(ex.getMessage());
         }
+        catch (PlayerNotFoundException ex)
+        {
+            Logger.getLogger(Command_donatorworld.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return true;
     }
@@ -229,4 +235,3 @@ public class Command_donatorworld extends CJFM_Command
         }
     }
 }
-*/
