@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-@CommandPermissions(level = AdminLevel.OP, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPERDONATOR, source = SourceType.BOTH)
 @CommandParameters(description = "Give everyone a pie!", usage = "/<command>")
 public class Command_pie extends CJFM_Command
 {
