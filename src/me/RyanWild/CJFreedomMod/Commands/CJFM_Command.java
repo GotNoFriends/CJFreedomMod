@@ -130,7 +130,7 @@ public abstract class CJFM_Command
                     return false;
                 }
                 else if (level == AdminLevel.SUPERDONATOR && 
-                        CJFM_DonatorList.isSeniorDonor(commandSender))
+                    !CJFM_DonatorList.isSuperDonor(commandSender))                
                 {
                     return false;
                 }
