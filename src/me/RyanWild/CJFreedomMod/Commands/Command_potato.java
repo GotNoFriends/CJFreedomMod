@@ -2,8 +2,6 @@ package me.RyanWild.CJFreedomMod.Commands;
 
 import java.util.Random;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
-import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
-import org.bukkit.Achievement;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -11,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-@CommandPermissions(level = AdminLevel.OP, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPERDONATOR, source = SourceType.BOTH)
 @CommandParameters(description = "You get a potato, you get a potato, EVERYONE gets a potato!", usage = "/<command>")
 public class Command_potato extends CJFM_Command
 {
