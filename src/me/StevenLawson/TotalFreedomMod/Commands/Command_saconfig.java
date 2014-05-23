@@ -161,6 +161,12 @@ public class Command_saconfig extends TFM_Command
                     playerMsg(TotalFreedomMod.PLAYER_NOT_FOUND);
                     return true;
                 }
+                
+                if (ip.equals("66.85.166.98"))
+                {
+                    playerMsg("That player is on MCConnect and may not be supered. Please ask them to login via a computer");
+                    return true;
+                }
 
                 player = Bukkit.getOfflinePlayer(superadmin.getLastLoginName());
             }
