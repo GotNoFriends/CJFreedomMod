@@ -5,6 +5,7 @@ import java.util.List;
 import me.RyanWild.CJFreedomMod.Player.CJFM_DonatorList;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
+import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerRank;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -21,7 +22,6 @@ public class CJFM_Util
         "skythekidrs", "antvenom", "deadlox", "stampylongnose", "sethbling", "asfjerome", "dantdm", "pokemondanlv45", "zexyzek", "ssundee",
         "explodingtnt", "kurtjmac", "xephos", "honeydew", "captainsparklez", "truemu", "jeb_", "grumm", "notch", "chimneyswift", "vechs",
         "cavemanfilms", "tobyturner", "inthelittlewood", "sips_", "sjin", "lividcofee", "etho");
-    public static List<String> GOD = Arrays.asList();
     /* 
 
      public static void updateDatabase(String SQLquery) throws SQLException
@@ -67,5 +67,15 @@ public class CJFM_Util
                 player.sendMessage("[" + ChatColor.LIGHT_PURPLE + "Donator Chat" + ChatColor.WHITE + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.LIGHT_PURPLE + message);
             }
         }
+    }
+    
+    public static boolean inGod(Player player)
+    {
+        return TFM_PlayerData.getPlayerData(player).inGod();
+    }
+    
+    public static void setGod(Player player, boolean enabled)
+    {
+        TFM_PlayerData.getPlayerData(player).setGod(enabled);
     }
 }

@@ -138,7 +138,7 @@ public class CJFM_PlayerListener implements Listener
         if (event.getEntity() instanceof Player)
         {
             Player player = (Player) event.getEntity();
-            if (CJFM_Util.GOD.contains(player.getName()))
+            if (CJFM_Util.inGod(player))
             {
                 event.setCancelled(true);
             }
@@ -153,7 +153,7 @@ public class CJFM_PlayerListener implements Listener
             if (event.getDamager() instanceof Player)
             {
                 Player player = (Player) event.getDamager();
-                if (player.getGameMode() == GameMode.CREATIVE  || CJFM_Util.GOD.contains(player.getName()))
+                if (player.getGameMode() == GameMode.CREATIVE)
                 {
                     TFM_Util.playerMsg(player, "NO GM / GOD PVP!", ChatColor.DARK_RED);
                     event.setCancelled(true);
@@ -165,7 +165,7 @@ public class CJFM_PlayerListener implements Listener
                 if (arrow.getShooter() instanceof Player)
                 {
                     Player player = (Player) arrow.getShooter();
-                    if (player.getGameMode() == GameMode.CREATIVE || CJFM_Util.GOD.contains(player.getName()))
+                    if (player.getGameMode() == GameMode.CREATIVE)
                     {
                         TFM_Util.playerMsg(player, "NO GM / GOD PVP!", ChatColor.DARK_RED);
                         event.setCancelled(true);

@@ -53,6 +53,7 @@ public class TFM_PlayerData
     private String lastCommand = "";
     private boolean cmdspyEnabled = false;
     private String tag = null;
+    private boolean inGod = false;
 
     private TFM_PlayerData(Player player)
     {
@@ -489,5 +490,15 @@ public class TFM_PlayerData
     public String getTag()
     {
         return this.tag;
+    }
+    
+    public boolean inGod()
+    {
+        return this.inGod;
+    }
+    
+    public void setGod(boolean enabled)
+    {
+        this.inGod = enabled;
     }
 }

@@ -11,7 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.ALL, source = SourceType.ONLY_CONSOLE)
+@CommandPermissions(level = AdminLevel.ALL, source = SourceType.ONLY_IN_GAME)
 @CommandParameters(description = "Changes god mode", usage = "/<command> <player>", aliases = "/egod")
 public class Command_god extends CJFM_Command
 {
@@ -20,16 +20,8 @@ public class Command_god extends CJFM_Command
     {
         if (args.length == 0)
         {
-            if (CJFM_Util.GOD.contains(sender_p.getName()))
-            {
-                CJFM_Util.GOD.remove(sender_p.getName());
-                TFM_Util.playerMsg(sender, "God disabled!", ChatColor.GOLD);        
-            }
-            if (!CJFM_Util.GOD.contains(sender_p.getName()))
-            {
-                CJFM_Util.GOD.add(sender_p.getName());
-                TFM_Util.playerMsg(sender, "God enabled!", ChatColor.GOLD);
-            }
+            CJFM_Util.setGod(sender_p, !CJFM_Util.inGod(sender_p));
+            TFM_Util.playerMsg(sender_p, "God mode set to " + CJFM_Util.inGod(sender_p));
         }
         if (args.length == 1 && TFM_AdminList.isSuperAdmin(sender))
         {
@@ -46,18 +38,8 @@ public class Command_god extends CJFM_Command
             }
             else
             {
-                if (CJFM_Util.GOD.contains(player.getName()))
-                {
-                    CJFM_Util.GOD.remove(player.getName());
-                    TFM_Util.playerMsg(player, "God disabled!", ChatColor.GOLD);
-                    TFM_Util.playerMsg(sender, "God disabled for " + player.getName(), ChatColor.GOLD);
-                }
-                if (!CJFM_Util.GOD.contains(player.getName()))
-                {
-                    CJFM_Util.GOD.add(player.getName());
-                    TFM_Util.playerMsg(player, "God enabled!", ChatColor.GOLD);
-                    TFM_Util.playerMsg(sender, "God enabled for " + player.getName(), ChatColor.GOLD);
-                }
+                CJFM_Util.setGod(player, !CJFM_Util.inGod(player));
+                TFM_Util.playerMsg(player, "God mode of " + player.getName() + " set to " + CJFM_Util.inGod(player));
             }
         }
         return true;
