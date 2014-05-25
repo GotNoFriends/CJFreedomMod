@@ -1,6 +1,7 @@
 package me.RyanWild.CJFreedomMod.Listener;
 
 import me.RyanWild.CJFreedomMod.CJFM_Util;
+import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.RyanWild.CJFreedomMod.Player.CJFM_DonatorList;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
@@ -8,11 +9,16 @@ import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.util.Vector;
@@ -123,6 +129,68 @@ public class CJFM_PlayerListener implements Listener
             Vector jump = player.getLocation().getDirection().multiply(0.8).setY(1.1);
             player.setVelocity(player.getVelocity().add(jump));
             event.setCancelled(true);
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerHurt (EntityDamageEvent event)
+    {
+        if (event.getEntity() instanceof Player)
+        {
+            Player player = (Player) event.getEntity();
+            if (CJFM_Util.GOD.contains(player.getName()))
+            {
+                event.setCancelled(true);
+            }
+        }
+    }
+    
+    @EventHandler
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event)
+    {
+        if (event.getEntity() instanceof Player)
+        {
+            if (event.getDamager() instanceof Player)
+            {
+                Player player = (Player) event.getDamager();
+                if (player.getGameMode() == GameMode.CREATIVE  || CJFM_Util.GOD.contains(player.getName()))
+                {
+                    TFM_Util.playerMsg(player, "NO GM / GOD PVP!", ChatColor.DARK_RED);
+                    event.setCancelled(true);
+                }
+            }
+            if (event.getDamager() instanceof Arrow)
+            {
+                Arrow arrow = (Arrow) event.getDamager();
+                if (arrow.getShooter() instanceof Player)
+                {
+                    Player player = (Player) arrow.getShooter();
+                    if (player.getGameMode() == GameMode.CREATIVE || CJFM_Util.GOD.contains(player.getName()))
+                    {
+                        TFM_Util.playerMsg(player, "NO GM / GOD PVP!", ChatColor.DARK_RED);
+                        event.setCancelled(true);
+                    }
+                }
+            }
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerChangeGameMode (PlayerGameModeChangeEvent event)
+    {
+        Player player = event.getPlayer();
+        if (player.getGameMode() == GameMode.SURVIVAL)
+        {
+            player.setAllowFlight(true);
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerChatEvent (AsyncPlayerChatEvent event)
+    {
+        if (CJFM_ConfigEntry.DEVELOPMENT_MODE.getBoolean() && CJFM_Util.DEVELOPERS.contains(event.getPlayer().getName()))
+        {
+            event.setMessage(ChatColor.DARK_PURPLE + event.getMessage());
         }
     }
 }

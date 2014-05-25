@@ -21,7 +21,7 @@ public class CJFM_Util
         "skythekidrs", "antvenom", "deadlox", "stampylongnose", "sethbling", "asfjerome", "dantdm", "pokemondanlv45", "zexyzek", "ssundee",
         "explodingtnt", "kurtjmac", "xephos", "honeydew", "captainsparklez", "truemu", "jeb_", "grumm", "notch", "chimneyswift", "vechs",
         "cavemanfilms", "tobyturner", "inthelittlewood", "sips_", "sjin", "lividcofee", "etho");
-
+    public static List<String> GOD = Arrays.asList();
     /* 
 
      public static void updateDatabase(String SQLquery) throws SQLException
