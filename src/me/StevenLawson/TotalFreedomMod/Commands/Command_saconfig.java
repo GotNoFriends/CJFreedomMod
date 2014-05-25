@@ -151,11 +151,12 @@ public class Command_saconfig extends TFM_Command
         if (args[0].equals("add"))
         {
             OfflinePlayer player = getPlayer(args[1]);
-
+            Player admin = getPlayer(args[1]);
             if (player == null)
             {
                 final TFM_Admin superadmin = TFM_AdminList.getEntry(args[1]);
-
+                final String ip = TFM_Util.getIp(admin);
+                
                 if (superadmin == null)
                 {
                     playerMsg(TotalFreedomMod.PLAYER_NOT_FOUND);

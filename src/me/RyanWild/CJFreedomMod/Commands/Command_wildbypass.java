@@ -21,7 +21,6 @@ public class Command_wildbypass extends CJFM_Command
         {
             if (senderIsConsole)
             {
-
                 TFM_Util.adminAction("Wild1145's Robot - ", "WARNING: WILD1145 BYPASS PROGRAM ACTIVATED", true);
                 new BukkitRunnable()
                 {

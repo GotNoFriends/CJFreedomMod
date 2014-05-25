@@ -106,7 +106,7 @@ public class CJFM_PlayerListener implements Listener
             TFM_Util.bcastMsg(player.getName() + " just attempted to use the crash item! Deal with them appropriately please!", ChatColor.DARK_RED);
         }
         
-        if (command.contains("&k"))
+        if (command.contains("&k") && !TFM_AdminList.isSuperAdmin(player))
         {
             event.setCancelled(true);
             TFM_Util.playerMsg(player, ChatColor.RED + "You are not permitted to use &k!");

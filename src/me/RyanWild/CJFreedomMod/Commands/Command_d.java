@@ -10,11 +10,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-/**
- *
- * @author hawkeyeshi
- */
-
 @CommandPermissions(level = AdminLevel.ALL, source = SourceType.BOTH)
 @CommandParameters(
         description = "Donator Chat - Chat With other Donators",
@@ -37,6 +32,7 @@ public class Command_d extends CJFM_Command
             if(TFM_AdminList.isSeniorAdmin(sender) || CJFM_DonatorList.isSuperDonor(sender))
             {
                 CJFM_Util.donatorChatMessage(sender, StringUtils.join(args, " "), senderIsConsole);
+                return true;
             }
             else
             {
@@ -44,7 +40,5 @@ public class Command_d extends CJFM_Command
                 return true;
             }
         }
-        return false;
-
     }
 }
