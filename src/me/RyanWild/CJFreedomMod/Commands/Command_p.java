@@ -3,13 +3,13 @@ package me.RyanWild.CJFreedomMod.Commands;
 import me.RyanWild.CJFreedomMod.CJFM_Util;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
-import net.minecraft.util.org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
 @CommandParameters(
         description = "Senior AdminChat - Talk privately with other senior admins.",
         usage = "/<command> [message...]",
@@ -32,7 +32,6 @@ public class Command_p extends CJFM_Command
         {
             CJFM_Util.SeniorAdminChatMessage(sender, StringUtils.join(args, " "), senderIsConsole);
         }
-
         return true;
     }
 }
