@@ -9,7 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
 @CommandParameters(
         description = "Alter what is currently on the boss bar.",
         usage = "/<command> [clear | message]")
@@ -24,7 +24,10 @@ public class Command_bar extends CJFM_Command{
         }
         if (args[0].equalsIgnoreCase("clear"))
         {
-            BarAPI.setMessage("§1", 1);
+            for (Player player : server.getOnlinePlayers())
+        {
+            BarAPI.removeBar(player);
+        }
             TFM_Util.adminChatMessage(sender, "[BAR-API] Bar Cleared.", false);
         }
         else
