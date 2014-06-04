@@ -188,9 +188,24 @@ public class CJFM_PlayerListener implements Listener
     @EventHandler
     public void onPlayerChatEvent (AsyncPlayerChatEvent event)
     {
+        Player player = event.getPlayer();
+        
         if (CJFM_ConfigEntry.DEVELOPMENT_MODE.getBoolean() && CJFM_Util.DEVELOPERS.contains(event.getPlayer().getName()))
         {
             event.setMessage(ChatColor.DARK_PURPLE + event.getMessage());
+        }
+        
+        if (player.getWorld().getName().equalsIgnoreCase("adminworld"))
+        {
+            event.setCancelled(true);
+            
+            for (Player pl : Bukkit.getOnlinePlayers())
+            {
+                if (pl.getWorld().getName().equalsIgnoreCase("adminworld"))
+                {
+                    TFM_Util.playerMsg(pl, event.getMessage());
+                }
+            }
         }
     }
 }
