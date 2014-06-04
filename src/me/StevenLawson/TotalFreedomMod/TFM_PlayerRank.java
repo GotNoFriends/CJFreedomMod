@@ -83,7 +83,7 @@ public enum TFM_PlayerRank
             return EXECUTIVE;
         }
 
-        if (DEVELOPERS.contains(sender.getName().toLowerCase()) || CJFM_Util.DEVELOPERS.contains(sender.getName().toLowerCase()))
+        if (CJFM_Util.DEVELOPERS.contains(sender.getName().toLowerCase()))
         {
             return DEVELOPER;
         }

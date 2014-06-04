@@ -37,7 +37,7 @@ public class CJFreedomMod
         }
     }
     
-      public static void updateDatabase(String SQLquery) throws SQLException
+   /*   public static void updateDatabase(String SQLquery) throws SQLException
     {
         Connection c = mySQL.openConnection();
         Statement statement = c.createStatement();
@@ -50,6 +50,6 @@ public class CJFreedomMod
         Statement statement = c.createStatement();
         ResultSet res = statement.executeQuery(SQLquery);
         res.next();
-    }
+    }*/
 
 }

@@ -153,7 +153,7 @@ public class Command_doomhammer extends CJFM_Command
         {
             user_ip = String.format("%s.%s.%s.%s", ip_parts[0], ip_parts[1], ip_parts[2], ip_parts[3]);
         }
-        try
+       /* try
         {
             //log to SQL
             CJFreedomMod.updateDatabase("INSERT INTO cjf_bans (bannedplayer, adminname, reason, time, ip) VALUES ('" + player.getName() + "', '" + sender.getName() + "', '" + "Obliterated by the DoomHammer" + "', '" + unixTime + "', '" + user_ip + "');");
@@ -161,6 +161,6 @@ public class Command_doomhammer extends CJFM_Command
         catch (SQLException ex)
         {
             Logger.getLogger(Command_doomhammer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } */
     }
 }

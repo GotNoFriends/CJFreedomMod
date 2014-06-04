@@ -100,11 +100,11 @@ public class TotalFreedomMod extends JavaPlugin
         }
 
         // Admin list
-        TFM_Util.createBackups(SUPERADMIN_FILE);
+       // TFM_Util.createBackups(SUPERADMIN_FILE);
         TFM_AdminList.load();
 
         // Permban list
-        TFM_Util.createBackups(PERMBAN_FILE);
+       // TFM_Util.createBackups(PERMBAN_FILE);
         TFM_PermbanList.load();
 
        // mySQL = new MySQL(plugin, CJFM_ConfigEntry.HOSTNAME.getString(), CJFM_ConfigEntry.PORT.getString(), CJFM_ConfigEntry.DATABASE.getString(), CJFM_ConfigEntry.USER.getString(), CJFM_ConfigEntry.PASSWORD.getString());
