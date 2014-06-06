@@ -7,6 +7,7 @@ import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.plugin;
+import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.server;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -26,9 +27,12 @@ import org.bukkit.util.Vector;
 
 public class CJFM_PlayerListener implements Listener
 {
+    private static final int MIN_WORD_LENGTH = 4;
+    
     @EventHandler(priority = EventPriority.HIGH)
     public static void onPlayerJoinEvent(PlayerJoinEvent event)
     {
+        
         Player player = event.getPlayer();
 
         /*  for (String username : (List<String>) TFM_ConfigEntry.UNBANNABLE_USERNAMES.getList())
@@ -218,5 +222,11 @@ public class CJFM_PlayerListener implements Listener
             }
         }
 
+    }
+    
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.NORMAL)
+    public void onPlayerChat(final AsyncPlayerChatEvent event) {
+        plugin.adminBusy.onPlayerChat(event);
+        
     }
 }

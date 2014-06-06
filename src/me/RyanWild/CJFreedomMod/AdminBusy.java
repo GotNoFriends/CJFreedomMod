@@ -23,7 +23,8 @@ public class AdminBusy extends CJFMAddon {
         
         info.setBusy(!info.isBusy());
         
-       TFM_Util.bcastMsg(player + " Toggled busy status o" + (info.isBusy() ? "n" : "ff"), ChatColor.AQUA);
+       plugin.util.adminAction(player, ChatColor.AQUA + "Toggled busy status o" + (info.isBusy() ? "n" : "ff"));
+       
     }
     
     public void onPlayerChat(AsyncPlayerChatEvent event) {
@@ -38,15 +39,15 @@ public class AdminBusy extends CJFMAddon {
                 continue;
             }
 
-            if (TFM_AdminList.isSuperAdmin(player)) {
+            if (!TFM_AdminList.isSuperAdmin(player)) {
                 return;
             }
 
             if (plugin.playerManager.getInfo(player).isBusy()) {
-                plugin.util.sendSyncMessage(event.getPlayer(), ChatColor.RED + player.getName() + " is busy right now, try again later");
+                plugin.util.sendSyncMessage(event.getPlayer(), ChatColor.RED + player.getName() + " is busy right now, try again later or contact another admin");
                 
-                TFM_Util.bcastMsg(player + " Is currently Busy" , ChatColor.AQUA);
             }
+            event.setCancelled(true);
         }
     }
 }

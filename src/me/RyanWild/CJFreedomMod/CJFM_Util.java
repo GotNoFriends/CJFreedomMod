@@ -101,10 +101,21 @@ public class CJFM_Util
     {
         TFM_PlayerData.getPlayerData(player).setGod(enabled);
     }
-    
-     public void msg(CommandSender sender, String message) {
+
+    public void msg(CommandSender sender, String message)
+    {
         sender.sendMessage(ChatColor.YELLOW + message);
 
+    }
+
+    public void adminAction(String admin, String action, ChatColor color)
+    {
+        server.broadcastMessage(color + admin + " - " + action);
+    }
+
+    public void adminAction(CommandSender sender, String action)
+    {
+        adminAction(sender.getName(), action, ChatColor.RED);
     }
 
 }
