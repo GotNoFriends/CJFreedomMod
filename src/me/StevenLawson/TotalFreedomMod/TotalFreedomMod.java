@@ -1,6 +1,5 @@
 package me.StevenLawson.TotalFreedomMod;
 
-import me.husky.mysql.MySQL;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -9,10 +8,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import me.RyanWild.CJFreedomMod.AdminBusy;
+import me.RyanWild.CJFreedomMod.CJFM_Util;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandHandler;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandLoader;
 import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.RyanWild.CJFreedomMod.Listener.CJFM_PlayerListener;
+import me.RyanWild.CJFreedomMod.PlayerManager;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandHandler;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
@@ -20,6 +22,7 @@ import me.StevenLawson.TotalFreedomMod.HTTPD.TFM_HTTPD_Manager;
 import me.StevenLawson.TotalFreedomMod.Listener.*;
 import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
 import me.StevenLawson.TotalFreedomMod.World.TFM_Flatlands;
+import me.husky.mysql.MySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -69,6 +72,11 @@ public class TotalFreedomMod extends JavaPlugin
     public static BukkitTask mutePurgeTask = null;
     public static boolean lockdownEnabled = false;
     public static Map<Player, Double> fuckoffEnabledFor = new HashMap<Player, Double>();
+    
+    public AdminBusy adminBusy;
+    public PlayerManager playerManager;
+    public CJFM_Util util;
+    
 
     @Override
     public void onLoad()
@@ -80,6 +88,10 @@ public class TotalFreedomMod extends JavaPlugin
 
         TFM_Log.setPluginLogger(plugin.getLogger());
         TFM_Log.setServerLogger(server.getLogger());
+        
+        playerManager = new PlayerManager(plugin);
+        adminBusy = new AdminBusy(plugin);
+        util = new CJFM_Util(plugin);
 
         setAppProperties();
     }
