@@ -1,7 +1,6 @@
 package me.RyanWild.CJFreedomMod;
 
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
-import me.RyanWild.CJFreedomMod.CJFM_Util;
 public class CJFMAddon
 {
 

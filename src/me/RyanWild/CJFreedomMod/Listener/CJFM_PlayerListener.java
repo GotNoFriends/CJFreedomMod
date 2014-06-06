@@ -6,6 +6,7 @@ import me.RyanWild.CJFreedomMod.Player.CJFM_DonatorList;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
+import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -29,14 +30,13 @@ public class CJFM_PlayerListener implements Listener
     public static void onPlayerJoinEvent(PlayerJoinEvent event)
     {
         Player player = event.getPlayer();
-        
-      /*  for (String username : (List<String>) TFM_ConfigEntry.UNBANNABLE_USERNAMES.getList())
-        {
-            player.setPlayerListName("[Fake]" + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&7Fake&8]");
-            TFM_Util.bcastMsg(":WARNING: " + player.getName() + " is completely and utterly FAKE! - This server is in Offline Mode so anybody can join as anyone!", ChatColor.RED);
-        } */
 
+        /*  for (String username : (List<String>) TFM_ConfigEntry.UNBANNABLE_USERNAMES.getList())
+         {
+         player.setPlayerListName("[Fake]" + player.getName());
+         TFM_PlayerData.getPlayerData(player).setTag("&8[&7Fake&8]");
+         TFM_Util.bcastMsg(":WARNING: " + player.getName() + " is completely and utterly FAKE! - This server is in Offline Mode so anybody can join as anyone!", ChatColor.RED);
+         } */
         if (TFM_AdminList.isSuperAdmin(player) && !player.getName().equalsIgnoreCase("varuct"))
         {
             TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
@@ -69,7 +69,7 @@ public class CJFM_PlayerListener implements Listener
         }
         else if (TFM_AdminList.isTelnetAdmin(player, true))
         {
-            player.setPlayerListName(ChatColor.GREEN + player.getName());
+            player.setPlayerListName(ChatColor.DARK_GREEN + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&2Telnet Admin&8]");
         }
         else if (TFM_AdminList.isSuperAdmin(player))
@@ -111,12 +111,22 @@ public class CJFM_PlayerListener implements Listener
             event.setCancelled(true);
             TFM_Util.bcastMsg(player.getName() + " just attempted to use the crash item! Deal with them appropriately please!", ChatColor.DARK_RED);
         }
-        
+
         if (command.contains("&k") && !TFM_AdminList.isSuperAdmin(player))
         {
             event.setCancelled(true);
             TFM_Util.playerMsg(player, ChatColor.RED + "You are not permitted to use &k!");
         }
+
+        for (Player pl : Bukkit.getOnlinePlayers())
+        {
+
+            if (command.contains("msg" + pl) && (plugin.playerManager.getInfo(pl).isBusy()))
+            {
+                event.setCancelled(true);
+            }
+        }
+
     }
 
     @EventHandler
@@ -131,9 +141,9 @@ public class CJFM_PlayerListener implements Listener
             event.setCancelled(true);
         }
     }
-    
+
     @EventHandler
-    public void onPlayerHurt (EntityDamageEvent event)
+    public void onPlayerHurt(EntityDamageEvent event)
     {
         if (event.getEntity() instanceof Player)
         {
@@ -144,7 +154,7 @@ public class CJFM_PlayerListener implements Listener
             }
         }
     }
-    
+
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event)
     {
@@ -174,9 +184,9 @@ public class CJFM_PlayerListener implements Listener
             }
         }
     }
-    
+
     @EventHandler
-    public void onPlayerChangeGameMode (PlayerGameModeChangeEvent event)
+    public void onPlayerChangeGameMode(PlayerGameModeChangeEvent event)
     {
         Player player = event.getPlayer();
         if (player.getGameMode() == GameMode.SURVIVAL)
@@ -184,21 +194,21 @@ public class CJFM_PlayerListener implements Listener
             player.setAllowFlight(true);
         }
     }
-    
+
     @EventHandler
-    public void onPlayerChatEvent (AsyncPlayerChatEvent event)
+    public void onPlayerChatEvent(AsyncPlayerChatEvent event)
     {
         Player player = event.getPlayer();
-        
+
         if (CJFM_ConfigEntry.DEVELOPMENT_MODE.getBoolean() && CJFM_Util.DEVELOPERS.contains(event.getPlayer().getName()))
         {
             event.setMessage(ChatColor.DARK_PURPLE + event.getMessage());
         }
-        
+
         if (player.getWorld().getName().equalsIgnoreCase("adminworld"))
         {
             event.setCancelled(true);
-            
+
             for (Player pl : Bukkit.getOnlinePlayers())
             {
                 if (pl.getWorld().getName().equalsIgnoreCase("adminworld"))
@@ -207,5 +217,6 @@ public class CJFM_PlayerListener implements Listener
                 }
             }
         }
+
     }
 }

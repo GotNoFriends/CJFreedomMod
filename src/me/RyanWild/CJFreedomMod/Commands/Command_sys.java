@@ -196,11 +196,6 @@ public class Command_sys extends CJFM_Command
 
             else if (args[0].equalsIgnoreCase("sadelete") || args[0].equalsIgnoreCase("del") || args[0].equalsIgnoreCase("remove"))
             {
-                if (!TFM_AdminList.isSeniorAdmin(sender))
-                {
-                    playerMsg(TotalFreedomMod.MSG_NO_PERMS);
-                    return true;
-                }
 
                 String targetName = args[1];
 
