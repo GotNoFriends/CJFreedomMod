@@ -5,11 +5,14 @@ import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
+import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.plugin;
 import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.server;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public class AdminBusy extends CJFMAddon
 {
@@ -27,11 +30,10 @@ public class AdminBusy extends CJFMAddon
         info.setBusy(!info.isBusy());
 
         plugin.util.adminAction(player, ChatColor.AQUA + "Has gone o" + (info.isBusy() ? "ff" : "n") + " Duty");
-       
 
         if (CJFM_Util.SYSADMINS.contains(player.getName()))
         {
-             player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.DARK_RED + player.getName()));
+            player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.DARK_RED + player.getName()));
         }
         else if (CJFM_Util.EXECUTIVES.contains(player.getName()))
         {
@@ -39,19 +41,19 @@ public class AdminBusy extends CJFMAddon
         }
         else if (CJFM_Util.DEVELOPERS.contains(player.getName()))
         {
-             player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.DARK_PURPLE + player.getName()));
+            player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.DARK_PURPLE + player.getName()));
         }
         else if (TFM_AdminList.isSeniorAdmin(player))
         {
-             player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.LIGHT_PURPLE + player.getName()));
+            player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.LIGHT_PURPLE + player.getName()));
         }
         else if (TFM_AdminList.isTelnetAdmin(player, true))
         {
-             player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.DARK_GREEN + player.getName()));
+            player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.DARK_GREEN + player.getName()));
         }
         else if (TFM_AdminList.isSuperAdmin(player))
         {
-             player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.AQUA + player.getName()));
+            player.setPlayerListName((info.isBusy() ? ChatColor.GRAY + player.getName() : ChatColor.AQUA + player.getName()));
         }
 
         if (plugin.playerManager.getInfo(player).isBusy())
@@ -140,5 +142,36 @@ public class AdminBusy extends CJFMAddon
             }
 
         }
+    }
+
+    public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event)
+    {
+        final String[] words = event.getMessage().split(" ");
+        for (final String word : words)
+        {
+            if (word.length() < MIN_WORD_LENGTH)
+            {
+                continue;
+            }
+
+            final Player player = server.getPlayer(word);
+            if (player == null)
+            {
+                continue;
+            }
+
+            if (!TFM_AdminList.isSuperAdmin(player))
+            {
+                return;
+            }
+
+            if (plugin.playerManager.getInfo(player).isBusy())
+            {
+                plugin.util.sendSyncMessage(event.getPlayer(), ChatColor.RED + player.getName() + " is off duty right now, try again later or contact another admin");
+
+            }
+
+        }
+
     }
 }
