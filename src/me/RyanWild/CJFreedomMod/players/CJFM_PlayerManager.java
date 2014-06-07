@@ -1,19 +1,20 @@
-package me.RyanWild.CJFreedomMod;
+package me.RyanWild.CJFreedomMod.players;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import me.RyanWild.CJFreedomMod.CJFM_Addon;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class PlayerManager extends CJFMAddon {
+public class CJFM_PlayerManager extends CJFM_Addon {
 
     public Map<String, PlayerInfo> infoMap = new HashMap<String, PlayerInfo>();
 
-    public PlayerManager(TotalFreedomMod plugin)
+    public CJFM_PlayerManager(TotalFreedomMod plugin)
     {
         super(plugin);
     }

@@ -1,5 +1,7 @@
-package me.RyanWild.CJFreedomMod;
+package me.RyanWild.CJFreedomMod.players;
 
+import me.RyanWild.CJFreedomMod.CJFM_Addon;
+import me.RyanWild.CJFreedomMod.CJFM_Util;
 import me.RyanWild.CJFreedomMod.Player.CJFM_DonatorList;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
@@ -14,18 +16,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-public class AdminBusy extends CJFMAddon
+public class CJFM_AdminBusy extends CJFM_Addon
 {
     private static final int MIN_WORD_LENGTH = 4;
 
-    public AdminBusy(TotalFreedomMod plugin)
+    public CJFM_AdminBusy(TotalFreedomMod plugin)
     {
         super(plugin);
     }
 
     public void toggleBusyStatus(Player player)
     {
-        final PlayerManager.PlayerInfo info = plugin.playerManager.getInfo(player);
+        final CJFM_PlayerManager.PlayerInfo info = plugin.playerManager.getInfo(player);
 
         info.setBusy(!info.isBusy());
 
@@ -81,7 +83,7 @@ public class AdminBusy extends CJFMAddon
             }
             else if (TFM_AdminList.isSuperAdmin(player))
             {
-                TFM_PlayerData.getPlayerData(player).setTag("&8[&8Off DutySuper Admin&8]");
+                TFM_PlayerData.getPlayerData(player).setTag("&8[&8Off Duty Super Admin&8]");
             }
         }
         else
@@ -89,7 +91,7 @@ public class AdminBusy extends CJFMAddon
 
             if (CJFM_Util.SYSADMINS.contains(player.getName()))
             {
-                TFM_PlayerData.getPlayerData(player).setTag("&8[&4System-Admin&8]");
+                TFM_PlayerData.getPlayerData(player).setTag("&8[&4System Administrator&8]");
             }
             else if (CJFM_Util.EXECUTIVES.contains(player.getName()))
             {

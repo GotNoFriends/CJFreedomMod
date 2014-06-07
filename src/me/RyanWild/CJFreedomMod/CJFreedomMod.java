@@ -20,8 +20,6 @@ public class CJFreedomMod
     public void onEnable()
     {
         loadDonatorConfig();
-        final PluginManager pm = server.getPluginManager();
-        pm.registerEvents(new CJFM_PlayerListener(), plugin);
     }
 
     public static void loadDonatorConfig()

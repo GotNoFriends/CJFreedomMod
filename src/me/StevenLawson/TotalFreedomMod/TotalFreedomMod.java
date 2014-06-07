@@ -8,13 +8,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import me.RyanWild.CJFreedomMod.AdminBusy;
+import me.RyanWild.CJFreedomMod.players.CJFM_AdminBusy;
 import me.RyanWild.CJFreedomMod.CJFM_Util;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandHandler;
 import me.RyanWild.CJFreedomMod.Commands.CJFM_CommandLoader;
 import me.RyanWild.CJFreedomMod.Config.CJFM_ConfigEntry;
 import me.RyanWild.CJFreedomMod.Listener.CJFM_PlayerListener;
-import me.RyanWild.CJFreedomMod.PlayerManager;
+import me.RyanWild.CJFreedomMod.players.CJFM_PlayerManager;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandHandler;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
@@ -73,8 +73,8 @@ public class TotalFreedomMod extends JavaPlugin
     public static boolean lockdownEnabled = false;
     public static Map<Player, Double> fuckoffEnabledFor = new HashMap<Player, Double>();
     
-    public AdminBusy adminBusy;
-    public PlayerManager playerManager;
+    public CJFM_AdminBusy adminBusy;
+    public CJFM_PlayerManager playerManager;
     public CJFM_Util util;
     
 
@@ -89,8 +89,8 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_Log.setPluginLogger(plugin.getLogger());
         TFM_Log.setServerLogger(server.getLogger());
         
-        playerManager = new PlayerManager(plugin);
-        adminBusy = new AdminBusy(plugin);
+        playerManager = new CJFM_PlayerManager(plugin);
+        adminBusy = new CJFM_AdminBusy(plugin);
         util = new CJFM_Util(plugin);
 
         setAppProperties();
@@ -137,9 +137,8 @@ public class TotalFreedomMod extends JavaPlugin
         pm.registerEvents(new TFM_TelnetListener(), plugin);
 
         //CJFreedomMod Listeners - DO NOT CHANGE OR I SHALL MURDER YOU
-        final PluginManager cjpm = server.getPluginManager();
-        cjpm.registerEvents(new CJFM_PlayerListener(), plugin);
-        cjpm.registerEvents(new CJFM_TelnetListener(), plugin);
+        final PluginManager cjfm = server.getPluginManager();
+        cjfm.registerEvents(new CJFM_PlayerListener(), plugin);
 
         try
         {

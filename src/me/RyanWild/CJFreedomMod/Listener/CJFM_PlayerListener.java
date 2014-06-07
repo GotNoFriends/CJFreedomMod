@@ -54,7 +54,7 @@ public class CJFM_PlayerListener implements Listener
         else if (CJFM_Util.SYSADMINS.contains(player.getName()))
         {
             player.setPlayerListName(ChatColor.DARK_RED + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&4System-Admin&8]");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&4System Administrator&8]");
         }
         else if (CJFM_Util.EXECUTIVES.contains(player.getName()))
         {
