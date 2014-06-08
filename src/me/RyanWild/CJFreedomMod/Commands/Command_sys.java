@@ -30,8 +30,7 @@ public class Command_sys extends CJFM_Command
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        
-        
+
         if (!CJFM_Util.SYSADMINS.contains(sender.getName()))
         {
             sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
@@ -55,7 +54,7 @@ public class Command_sys extends CJFM_Command
         }
         else if (args.length == 1)
         {
-        
+
             if (args[0].equalsIgnoreCase("birthday"))
             {
                 new BukkitRunnable()

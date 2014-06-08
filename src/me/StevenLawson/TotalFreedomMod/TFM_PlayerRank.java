@@ -87,12 +87,12 @@ public enum TFM_PlayerRank
         {
             return DEVELOPER;
         }
-        
+
         if (CJFM_DonatorList.isSuperDonor(sender))
         {
             return SUPERDONATOR;
         }
-        
+
         if (CJFM_DonatorList.isSeniorDonor(sender))
         {
             return SENIORDONATOR;

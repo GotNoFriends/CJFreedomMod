@@ -77,7 +77,7 @@ public class Command_whitelist extends TFM_Command
         if (args[0].equalsIgnoreCase("off"))
         {
             TFM_Util.adminAction(sender.getName(), "Turning the whitelist off.", true);
-             BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.GREEN + sender.getName() + " Has turned whitelist off", 60);
+            BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.GREEN + sender.getName() + " Has turned whitelist off", 60);
             server.setWhitelist(false);
             return true;
         }

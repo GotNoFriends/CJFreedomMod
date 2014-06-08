@@ -55,8 +55,6 @@ public class Command_glist extends TFM_Command
             String username;
             final List<String> ips = new ArrayList<String>();
 
-
-
             final Player player = getPlayer(args[1]);
 
             if (player == null)

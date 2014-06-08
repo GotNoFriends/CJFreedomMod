@@ -43,13 +43,13 @@ public class Command_warn extends CJFM_Command
         {
             return false;
         }
-        
-         else if (args.length >= 1)
+
+        else if (args.length >= 1)
         {
             Points = StringUtils.join(ArrayUtils.subarray(args, 1, args.length), " ");
 
         }
-         
+
         else if (args.length >= 2)
         {
             ban_reason = StringUtils.join(ArrayUtils.subarray(args, 1, args.length), " ");
@@ -66,7 +66,7 @@ public class Command_warn extends CJFM_Command
         {
             if (TFM_AdminList.isSuperAdmin(admins))
             {
-                admins.sendMessage(TFM_Util.colorize("&8[&4CJFreedomMod System&8] &a" + sender.getName() + " &4has warned &a" + warned + " - " + player.getAddress().getAddress().getHostAddress() + " &4 for &2" + ban_reason + "&4. Adding " + Points +" to their warning points. "));
+                admins.sendMessage(TFM_Util.colorize("&8[&4CJFreedomMod System&8] &a" + sender.getName() + " &4has warned &a" + warned + " - " + player.getAddress().getAddress().getHostAddress() + " &4 for &2" + ban_reason + "&4. Adding " + Points + " to their warning points. "));
 
             }
         }

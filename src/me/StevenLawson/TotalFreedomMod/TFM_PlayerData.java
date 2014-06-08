@@ -491,12 +491,12 @@ public class TFM_PlayerData
     {
         return this.tag;
     }
-    
+
     public boolean inGod()
     {
         return this.inGod;
     }
-    
+
     public void setGod(boolean enabled)
     {
         this.inGod = enabled;

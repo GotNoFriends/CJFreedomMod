@@ -106,7 +106,6 @@ public class Command_ro extends TFM_Command
 
         TFM_Util.adminAction(sender.getName(), "Remove complete! " + affected + " blocks removed.", false);
 
-
         return true;
     }
 }

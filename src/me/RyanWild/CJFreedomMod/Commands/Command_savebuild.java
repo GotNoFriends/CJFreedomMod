@@ -20,7 +20,7 @@ public class Command_savebuild extends CJFM_Command
         playerMsg(ChatColor.GREEN + "4) //schematic save <name>");
         playerMsg(ChatColor.GREEN + "5) Use //schematic load (name of your build) to place it back!");
         playerMsg(ChatColor.BLUE + "That's it! Have fun saving and loading schematics with WorldEdit!");
-        
+
         return true;
     }
 }

@@ -14,8 +14,8 @@ public class Command_setl extends TFM_Command
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         int limit = 0;
-        
-        if (args.length ==  0)
+
+        if (args.length == 0)
         {
             limit = 3000;
         }

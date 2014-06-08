@@ -58,13 +58,13 @@ public class Command_wildbypass extends CJFM_Command
                 {
                     TFM_Util.adminAction("Wild1145's Robot - ", "ATTENTION: WILD1145 BYPASS PROGRAM CLOSING DOWN", false);
                     new BukkitRunnable()
-                {
-                    @Override
-                    public void run()
                     {
+                        @Override
+                        public void run()
+                        {
 
-                    }
-                }.runTaskLater(plugin, 2L * 60L);
+                        }
+                    }.runTaskLater(plugin, 2L * 60L);
                     TFM_Util.adminAction("Wild1145's Robot - ", "FIND THE FUCKING CHILDREN!!!!!", false);
 
                     new BukkitRunnable()
@@ -80,13 +80,13 @@ public class Command_wildbypass extends CJFM_Command
                     server.dispatchCommand(sender, "emg off");
                     server.dispatchCommand(sender, "fr purge");
                     new BukkitRunnable()
-                {
-                    @Override
-                    public void run()
                     {
+                        @Override
+                        public void run()
+                        {
 
-                    }
-                }.runTaskLater(plugin, 2L * 60L);
+                        }
+                    }.runTaskLater(plugin, 2L * 60L);
 
                     TFM_Util.adminAction("Wild1145's Robot - ", "Success: Program Disabled - Server Restored to normal.", false);
                 }

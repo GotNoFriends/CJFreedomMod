@@ -3,21 +3,21 @@ package me.RyanWild.CJFreedomMod.Config;
 import java.util.List;
 
 public enum CJFM_ConfigEntry
-{ 
-    
+{
+
     HOSTNAME(String.class, "Hostname"),
     PORT(String.class, "Port"),
     DATABASE(String.class, "Database"),
     USER(String.class, "Username"),
-    PASSWORD(String.class, "Password"), 
+    PASSWORD(String.class, "Password"),
     PANEL_URL(String.class, "panel_url"),
     PANEL_API_KEY(String.class, "panel_api_key"),
     HEAD(String.class, "head"),
     EMERGANCY_MODE(Boolean.class, "emergancy_mode"),
     EMERGANCY_MODE_OPEN(Boolean.class, "emergancy_mode_open"),
     DEVELOPMENT_MODE(Boolean.class, "dev_mode"),
-    DHAMMER_MODE(Boolean.class, "dhammer_mode"),  
-    ENABLE_ADMINWORLD(Boolean.class, "adminworld"); 
+    DHAMMER_MODE(Boolean.class, "dhammer_mode"),
+    ENABLE_ADMINWORLD(Boolean.class, "adminworld");
     //
     private final Class<?> type;
     private final String configName;

@@ -1,6 +1,5 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
-
 import me.StevenLawson.TotalFreedomMod.Bridge.TFM_WorldEditBridge;
 import me.StevenLawson.TotalFreedomMod.TFM_Ban;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
@@ -24,7 +23,7 @@ public class Command_gtfo extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-            
+
         if (args.length == 0)
         {
             return false;
@@ -86,9 +85,9 @@ public class Command_gtfo extends TFM_Command
             ip = String.format("%s.%s.*.*", ipParts[0], ipParts[1]);
         }
         TFM_Util.bcastMsg(sender.getName() + " - " + String.format("Banning: %s, IP: %s for %s.", player.getName(), ip, reason), ChatColor.RED);
-        
+
         BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.RED + sender.getName() + " Has Banned " + player.getName() + " for " + reason, 60);
-            
+
         TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ip, player.getName(), sender.getName(), null, reason));
 
         // ban username:

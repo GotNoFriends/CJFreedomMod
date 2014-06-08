@@ -156,13 +156,13 @@ public class Command_saconfig extends TFM_Command
             {
                 final TFM_Admin superadmin = TFM_AdminList.getEntry(args[1]);
                 final String ip = TFM_Util.getIp(admin);
-                
+
                 if (superadmin == null)
                 {
                     playerMsg(TotalFreedomMod.PLAYER_NOT_FOUND);
                     return true;
                 }
-                
+
                 if (ip.equals("66.85.166.98"))
                 {
                     playerMsg("That player is on MCConnect and may not be supered. Please ask them to login via a computer");
@@ -188,7 +188,6 @@ public class Command_saconfig extends TFM_Command
             }
 
             String targetName = args[1];
-
 
             final Player player = getPlayer(targetName);
 

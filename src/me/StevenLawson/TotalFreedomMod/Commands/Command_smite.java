@@ -25,7 +25,7 @@ public class Command_smite extends TFM_Command
             return false;
         }
         final Player player = getPlayer(args[0]);
-        
+
         if (player == null)
         {
             playerMsg(TotalFreedomMod.PLAYER_NOT_FOUND);
@@ -41,7 +41,7 @@ public class Command_smite extends TFM_Command
             TFM_Util.playerMsg(sender_p, "Please make sure to include reasons with your smites, it is a lot easier if you do and I won't have wasted time coding this.", ChatColor.RED);
             BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.RED + sender.getName() + " has smitten " + player.getName(), 60);
         }
-        
+
         smite(player);
 
         return true;
@@ -75,6 +75,5 @@ public class Command_smite extends TFM_Command
         //Kill:
         player.setHealth(0.0);
     }
-    
-    
+
 }

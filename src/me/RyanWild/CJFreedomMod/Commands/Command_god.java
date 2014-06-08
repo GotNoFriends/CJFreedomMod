@@ -26,10 +26,12 @@ public class Command_god extends CJFM_Command
         if (args.length == 1 && TFM_AdminList.isSuperAdmin(sender))
         {
             Player player = null;
-            try {
+            try
+            {
                 player = getPlayer(args[0]);
             }
-            catch (PlayerNotFoundException ex) {
+            catch (PlayerNotFoundException ex)
+            {
                 Logger.getLogger(Command_god.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (player == null)

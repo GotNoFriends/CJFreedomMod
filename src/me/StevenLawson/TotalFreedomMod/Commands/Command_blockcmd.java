@@ -63,12 +63,12 @@ public class Command_blockcmd extends TFM_Command
         if (args.length == 0)
         {
             int blockingCounter = 0;
-            
+
             for (Player players : server.getOnlinePlayers())
             {
                 TFM_PlayerData playerData = TFM_PlayerData.getPlayerData(players);
-                
-                if(!TFM_AdminList.isSuperAdmin(players))
+
+                if (!TFM_AdminList.isSuperAdmin(players))
                 {
                     if (!playerData.allCommandsBlocked())
                     {
@@ -77,11 +77,10 @@ public class Command_blockcmd extends TFM_Command
                     }
                     playerMsg(players, ChatColor.RED + "You're commands have been blocked!");
                 }
-            }   
+            }
         }
-        
-        
+
         return true;
-        
+
     }
 }

@@ -98,7 +98,7 @@ public class Command_doom extends TFM_Command
             {
                 // message
                 TFM_Util.adminAction(sender.getName(), "Banning " + player.getName() + ", IP: " + ip, true);
-                
+
                 BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.RED + sender.getName() + " Has Doomed " + player.getName(), 60);
 
                 // generate explosion

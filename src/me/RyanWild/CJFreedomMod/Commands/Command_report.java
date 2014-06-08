@@ -74,16 +74,16 @@ public class Command_report extends CJFM_Command
          * Changed to Unix Time Frame. 
          */
         long unixTime = System.currentTimeMillis() / 1000L;
-       /* try
-        {
-            CJFreedomMod.updateDatabase("INSERT INTO reports (Reported, Reporter, ban_reason, Time, Status) VALUES ('" + Reported + "', '" + Reporter + "', '" + ban_reason + "', '" + unixTime + "', 'open');");
-            TFM_Log.info("New Report Added by: " + Reporter);
-        }
-        catch (SQLException ex)
-        {
-            sender.sendMessage("Error submitting report to Database.");
-            TFM_Log.severe(ex);
-        }*/
+        /* try
+         {
+         CJFreedomMod.updateDatabase("INSERT INTO reports (Reported, Reporter, ban_reason, Time, Status) VALUES ('" + Reported + "', '" + Reporter + "', '" + ban_reason + "', '" + unixTime + "', 'open');");
+         TFM_Log.info("New Report Added by: " + Reporter);
+         }
+         catch (SQLException ex)
+         {
+         sender.sendMessage("Error submitting report to Database.");
+         TFM_Log.severe(ex);
+         }*/
 
         return true;
     }

@@ -189,7 +189,6 @@ public class TFM_AdminList
                 }
             }
 
-
             if (admin.isSeniorAdmin())
             {
                 seniorUUIDs.add(uuid);
@@ -361,7 +360,6 @@ public class TFM_AdminList
             }
         }
 
-
         if (!(sender instanceof Player))
         {
             return seniorConsoleAliases.contains(sender.getName())
@@ -389,7 +387,6 @@ public class TFM_AdminList
             return true;
         }
 
-
         if (superIps.contains(TFM_Util.getIp((Player) sender)))
         {
             return true;
@@ -397,6 +394,7 @@ public class TFM_AdminList
 
         return false;
     }
+
     public static boolean isTelnetAdmin(CommandSender sender, boolean verifySuperadmin)
     {
         if (verifySuperadmin)

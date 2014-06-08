@@ -40,7 +40,6 @@ public class CJFM_CommandHandler
                     StringUtils.join(args, " ")), true);
         }
 
-
         final CJFM_Command dispatcher;
         try
         {

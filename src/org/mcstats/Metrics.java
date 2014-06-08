@@ -362,7 +362,6 @@ public class Metrics
         int playersOnline = Bukkit.getServer().getOnlinePlayers().length;
 
         // END server software specific section -- all code below does not use any code outside of this class / Java
-
         // Construct the post data
         StringBuilder json = new StringBuilder(1024);
         json.append('{');
@@ -463,7 +462,6 @@ public class Metrics
         {
             connection = url.openConnection();
         }
-
 
         byte[] uncompressed = json.toString().getBytes();
         byte[] compressed = gzip(json.toString());

@@ -22,14 +22,14 @@ public class Command_d extends CJFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        
-        if(args.length == 0)
+
+        if (args.length == 0)
         {
             return false;
         }
         else
         {
-            if(TFM_AdminList.isSeniorAdmin(sender) || CJFM_DonatorList.isSuperDonor(sender))
+            if (TFM_AdminList.isSeniorAdmin(sender) || CJFM_DonatorList.isSuperDonor(sender))
             {
                 CJFM_Util.donatorChatMessage(sender, StringUtils.join(args, " "), senderIsConsole);
                 return true;

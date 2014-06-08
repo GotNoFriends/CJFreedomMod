@@ -14,28 +14,37 @@ public class Command_pgtoggle extends CJFM_Command
 {
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
-    {	
-    	boolean toggled = false;
-    	boolean enabled = true;
-    	for(Plugin p : TotalFreedomMod.server.getPluginManager().getPlugins()) {
-    		if(p.getName().equalsIgnoreCase("PortalGun")) {
-    			if(p.isEnabled()) {
-    				p.getPluginLoader().disablePlugin(p);
-    				enabled = false;
-    			} else {
-    				p.getPluginLoader().enablePlugin(p);
-    				enabled = true;
-    			}
-    			toggled = true;
-    		}
-    	}
-    	if(toggled) {
-    		if(!enabled) {
-    			TotalFreedomMod.server.broadcastMessage(ChatColor.RED + sender.getName() + " - Disabling PortalGun");
-    		} else {
-    			TotalFreedomMod.server.broadcastMessage(ChatColor.GREEN + sender.getName() + " - Enabling PortalGun");
-    		}
-    	}
+    {
+        boolean toggled = false;
+        boolean enabled = true;
+        for (Plugin p : TotalFreedomMod.server.getPluginManager().getPlugins())
+        {
+            if (p.getName().equalsIgnoreCase("PortalGun"))
+            {
+                if (p.isEnabled())
+                {
+                    p.getPluginLoader().disablePlugin(p);
+                    enabled = false;
+                }
+                else
+                {
+                    p.getPluginLoader().enablePlugin(p);
+                    enabled = true;
+                }
+                toggled = true;
+            }
+        }
+        if (toggled)
+        {
+            if (!enabled)
+            {
+                TotalFreedomMod.server.broadcastMessage(ChatColor.RED + sender.getName() + " - Disabling PortalGun");
+            }
+            else
+            {
+                TotalFreedomMod.server.broadcastMessage(ChatColor.GREEN + sender.getName() + " - Enabling PortalGun");
+            }
+        }
         return true;
     }
 }

@@ -13,7 +13,8 @@ import org.bukkit.entity.Player;
 @CommandParameters(
         description = "Alter what is currently on the boss bar.",
         usage = "/<command> [clear | message]")
-public class Command_bar extends CJFM_Command{
+public class Command_bar extends CJFM_Command
+{
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
@@ -25,9 +26,9 @@ public class Command_bar extends CJFM_Command{
         if (args[0].equalsIgnoreCase("clear"))
         {
             for (Player player : server.getOnlinePlayers())
-        {
-            BarAPI.removeBar(player);
-        }
+            {
+                BarAPI.removeBar(player);
+            }
             TFM_Util.adminChatMessage(sender, "[BAR-API] Bar Cleared.", false);
         }
         else

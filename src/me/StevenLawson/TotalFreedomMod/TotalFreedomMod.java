@@ -72,11 +72,10 @@ public class TotalFreedomMod extends JavaPlugin
     public static BukkitTask mutePurgeTask = null;
     public static boolean lockdownEnabled = false;
     public static Map<Player, Double> fuckoffEnabledFor = new HashMap<Player, Double>();
-    
+
     public CJFM_AdminBusy adminBusy;
     public CJFM_PlayerManager playerManager;
     public CJFM_Util util;
-    
 
     @Override
     public void onLoad()
@@ -88,7 +87,7 @@ public class TotalFreedomMod extends JavaPlugin
 
         TFM_Log.setPluginLogger(plugin.getLogger());
         TFM_Log.setServerLogger(server.getLogger());
-        
+
         playerManager = new CJFM_PlayerManager(plugin);
         adminBusy = new CJFM_AdminBusy(plugin);
         util = new CJFM_Util(plugin);
@@ -112,15 +111,14 @@ public class TotalFreedomMod extends JavaPlugin
         }
 
         // Admin list
-       // TFM_Util.createBackups(SUPERADMIN_FILE);
+        // TFM_Util.createBackups(SUPERADMIN_FILE);
         TFM_AdminList.load();
 
         // Permban list
-       // TFM_Util.createBackups(PERMBAN_FILE);
+        // TFM_Util.createBackups(PERMBAN_FILE);
         TFM_PermbanList.load();
 
-       // mySQL = new MySQL(plugin, CJFM_ConfigEntry.HOSTNAME.getString(), CJFM_ConfigEntry.PORT.getString(), CJFM_ConfigEntry.DATABASE.getString(), CJFM_ConfigEntry.USER.getString(), CJFM_ConfigEntry.PASSWORD.getString());
-
+        // mySQL = new MySQL(plugin, CJFM_ConfigEntry.HOSTNAME.getString(), CJFM_ConfigEntry.PORT.getString(), CJFM_ConfigEntry.DATABASE.getString(), CJFM_ConfigEntry.USER.getString(), CJFM_ConfigEntry.PASSWORD.getString());
         // Playerlist and bans
         TFM_PlayerList.getInstance().load();
         TFM_BanManager.getInstance().load();

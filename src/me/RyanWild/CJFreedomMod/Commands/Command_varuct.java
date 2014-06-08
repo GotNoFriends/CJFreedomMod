@@ -16,26 +16,26 @@ public class Command_varuct extends CJFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        
+
         Player varuct = Bukkit.getServer().getPlayer("Varuct");
-        
-        if(varuct != null && !TFM_AdminList.isAdminImpostor(varuct))
+
+        if (varuct != null && !TFM_AdminList.isAdminImpostor(varuct))
         {
             playerMsg(ChatColor.GREEN + "The owner is " + ChatColor.BLUE + "online" + ChatColor.GREEN + "!");
             return true;
-           
-        }else if(varuct == null || TFM_AdminList.isAdminImpostor(varuct))
+
+        }
+        else if (varuct == null || TFM_AdminList.isAdminImpostor(varuct))
         {
             playerMsg(ChatColor.GREEN + "The owner is " + ChatColor.DARK_RED + "offline" + ChatColor.GREEN + "!");
             return true;
-        }    
-        
-        
+        }
+
         else
         {
-            
+
         }
-        
+
         return false;
     }
 }

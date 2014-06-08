@@ -34,20 +34,19 @@ public class CJFreedomMod
             TFM_Log.severe("Error loading donator list: " + ex.getMessage());
         }
     }
-    
-   /*   public static void updateDatabase(String SQLquery) throws SQLException
-    {
-        Connection c = mySQL.openConnection();
-        Statement statement = c.createStatement();
-        statement.executeUpdate(SQLquery);
-    }
 
-    public void getValueFromDB(String SQLquery) throws SQLException
-    {
-        Connection c = mySQL.openConnection();
-        Statement statement = c.createStatement();
-        ResultSet res = statement.executeQuery(SQLquery);
-        res.next();
-    }*/
+    /*   public static void updateDatabase(String SQLquery) throws SQLException
+     {
+     Connection c = mySQL.openConnection();
+     Statement statement = c.createStatement();
+     statement.executeUpdate(SQLquery);
+     }
 
+     public void getValueFromDB(String SQLquery) throws SQLException
+     {
+     Connection c = mySQL.openConnection();
+     Statement statement = c.createStatement();
+     ResultSet res = statement.executeQuery(SQLquery);
+     res.next();
+     }*/
 }

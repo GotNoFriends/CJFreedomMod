@@ -55,7 +55,6 @@ public class Command_tempban extends TFM_Command
             message.append(", Reason: \"").append(reason).append("\"");
         }
 
-
         // strike with lightning effect:
         final Location targetPos = player.getLocation();
         for (int x = -1; x <= 1; x++)

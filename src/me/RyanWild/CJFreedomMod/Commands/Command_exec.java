@@ -24,15 +24,15 @@ public class Command_exec extends CJFM_Command
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if(args[0].equalsIgnoreCase("Personal"))
+        if (args[0].equalsIgnoreCase("Personal"))
         {
-            if(!CJFM_Util.EXECUTIVES.contains(sender.getName()))
+            if (!CJFM_Util.EXECUTIVES.contains(sender.getName()))
             {
                 TFM_Util.playerMsg(sender, "Thou art not an executive...", ChatColor.RED);
                 return true;
             }
-            
-            if(sender.getName().equals("Camzie99") && !args[1].equalsIgnoreCase("kyle"))
+
+            if (sender.getName().equals("Camzie99") && !args[1].equalsIgnoreCase("kyle"))
             {
                 if (args.length != 2)
                 {
@@ -102,58 +102,58 @@ public class Command_exec extends CJFM_Command
                     }
                 }.runTaskLater(plugin, 3L * 20L);
                 return true;
-                }
+            }
 
-                else
-                {
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           .        .                                      ");                
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           \\'.____.'/                                     ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "          __'-.  .-'__                         .--.        ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "          '_i:'oo':i_'---...____...----i\"\"\"-.-'.-\"\\\\ ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "            /._  _.\\       :       /   '._   ;/    ;'-._  ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           (  o  o  )       '-.__.'       '. '.     '-.\"  ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "            '-.__.-' _.--.                 '-.:            ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             : '-'  /     ;   _..--,  /       ;            ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             :      '-._.-'  ;     ; :       :             ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "              :  `      .'    '-._.' :      /              ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               \\  :    /    ____....--\\    :             ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                '._\\  :\"\"\"\"\"    '.     !.:           ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 : |: :           'www'| \\ '|             ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 | || |              : |  | :              ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 | || |             .' !  | |              ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                .' !| |            /__I   | |              ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               /__I.' !                  .' !              ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                  /__I                  /__I               ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                                           ");
-                    TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        ~~>           *THIS IS A COW*          <~~         ");
-                }
+            else
+            {
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           .        .                                      ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           \\'.____.'/                                     ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "          __'-.  .-'__                         .--.        ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "          '_i:'oo':i_'---...____...----i\"\"\"-.-'.-\"\\\\ ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "            /._  _.\\       :       /   '._   ;/    ;'-._  ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           (  o  o  )       '-.__.'       '. '.     '-.\"  ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "            '-.__.-' _.--.                 '-.:            ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             : '-'  /     ;   _..--,  /       ;            ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             :      '-._.-'  ;     ; :       :             ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "              :  `      .'    '-._.' :      /              ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               \\  :    /    ____....--\\    :             ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                '._\\  :\"\"\"\"\"    '.     !.:           ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 : |: :           'www'| \\ '|             ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 | || |              : |  | :              ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 | || |             .' !  | |              ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                .' !| |            /__I   | |              ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               /__I.' !                  .' !              ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                  /__I                  /__I               ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                                           ");
+                TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        ~~>           *THIS IS A COW*          <~~         ");
+            }
+            return true;
+        }
+        else if (args[0].equalsIgnoreCase("adminworld"))
+        {
+            if (!(CJFM_Util.EXECUTIVES.contains(sender.getName())) && !(CJFM_Util.SYSADMINS.contains(sender.getName())))
+            {
+                TFM_Util.playerMsg(sender, "Thou dost not have permission to do that...", ChatColor.RED);
                 return true;
             }
-            else if(args[0].equalsIgnoreCase("adminworld"))
+            if (args.length != 2)
             {
-                if(!(CJFM_Util.EXECUTIVES.contains(sender.getName())) && !(CJFM_Util.SYSADMINS.contains(sender.getName())))
-                {
-                    TFM_Util.playerMsg(sender, "Thou dost not have permission to do that...", ChatColor.RED);
-                    return true;
-                }
-                if(args.length != 2)
-                {
-                    return false;
-                }
+                return false;
+            }
 
-                if(args[1].equalsIgnoreCase("on"))
-                {
-                    TFM_Util.adminAction(sender.getName(), "Enabling AdminWorld!", false);
-                    CJFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(true);
-                    return true;
-                }
+            if (args[1].equalsIgnoreCase("on"))
+            {
+                TFM_Util.adminAction(sender.getName(), "Enabling AdminWorld!", false);
+                CJFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(true);
+                return true;
+            }
 
-                if(args[1].equalsIgnoreCase("off"))
-                {
-                    TFM_Util.adminAction(sender.getName(), "Disabling AdminWorld!", true);
-                    CJFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(false);
-                    return true;
-                }
+            if (args[1].equalsIgnoreCase("off"))
+            {
+                TFM_Util.adminAction(sender.getName(), "Disabling AdminWorld!", true);
+                CJFM_ConfigEntry.ENABLE_ADMINWORLD.setBoolean(false);
+                return true;
+            }
         }
         return false;
     }

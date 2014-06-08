@@ -168,7 +168,6 @@ public class CJFM_DonatorList
                 donorIps.add(ip);
             }
 
-
             if (admin.isSeniorDonor())
             {
                 seniorUUIDs.add(uuid);
@@ -334,7 +333,6 @@ public class CJFM_DonatorList
             }
         }
 
-
         final CJFM_Donator entry = getEntry((Player) sender);
         if (entry != null)
         {
@@ -363,7 +361,6 @@ public class CJFM_DonatorList
 
         return false;
     }
-
 
     public static boolean isIdentityMatched(Player player)
     {

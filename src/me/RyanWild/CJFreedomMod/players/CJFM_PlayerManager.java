@@ -10,7 +10,8 @@ import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class CJFM_PlayerManager extends CJFM_Addon {
+public class CJFM_PlayerManager extends CJFM_Addon
+{
 
     public Map<String, PlayerInfo> infoMap = new HashMap<String, PlayerInfo>();
 

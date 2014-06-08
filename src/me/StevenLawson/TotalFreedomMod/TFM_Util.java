@@ -910,7 +910,6 @@ public class TFM_Util
                 field.setAccessible(true);
                 return (T) field.get(from);
 
-
             }
             catch (NoSuchFieldException ex)
             {
@@ -959,7 +958,6 @@ public class TFM_Util
     {
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         return packageName.substring(packageName.lastIndexOf('.') + 1);
-
 
     }
 

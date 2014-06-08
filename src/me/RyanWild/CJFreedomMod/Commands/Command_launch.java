@@ -44,5 +44,5 @@ public class Command_launch extends CJFM_Command
         }
         player.setVelocity(new Vector(0, strength, 0));
         return true;
-     }
+    }
 }

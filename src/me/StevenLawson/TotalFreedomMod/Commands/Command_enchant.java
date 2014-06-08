@@ -29,7 +29,7 @@ public class Command_enchant extends TFM_Command
             playerMsg("You are holding an invalid item.");
             return true;
         }
-        
+
         if (args[0].equalsIgnoreCase("custom"))
         {
             if (!TFM_AdminList.isSeniorAdmin(sender))
@@ -37,32 +37,32 @@ public class Command_enchant extends TFM_Command
                 playerMsg(TotalFreedomMod.MSG_NO_PERMS);
                 return true;
             }
-            
+
             int level = 0;
-            
+
             if (args.length == 3)
             {
                 level = Integer.parseInt(args[2]);
             }
-            
+
             else
             {
                 level = 10;
             }
-            
+
             Enchantment enchantment = Enchantment.getById(Integer.parseInt(args[1]));
             if (enchantment != null)
             {
                 itemInHand.addUnsafeEnchantment(enchantment, level);
             }
-            
+
             else
             {
                 playerMsg(sender_p, "Invalid Enchantment!");
                 return true;
             }
         }
-        
+
         if (args[0].equalsIgnoreCase("god"))
         {
             if (!TFM_AdminList.isSeniorAdmin(sender))
@@ -70,22 +70,25 @@ public class Command_enchant extends TFM_Command
                 playerMsg(TotalFreedomMod.MSG_NO_PERMS);
                 return true;
             }
-            
-            else for (Enchantment ench : Enchantment.values())
+
+            else
             {
-                int level;
-                if (args.length == 2)
+                for (Enchantment ench : Enchantment.values())
                 {
-                    level = Integer.parseInt(args[1]);
-                }
-                
-                else
-                {
-                    level = 10;
-                }
-                if (!ench.equals(Enchantment.PROTECTION_FALL))
-                {
-                    itemInHand.addUnsafeEnchantment(ench, level);
+                    int level;
+                    if (args.length == 2)
+                    {
+                        level = Integer.parseInt(args[1]);
+                    }
+
+                    else
+                    {
+                        level = 10;
+                    }
+                    if (!ench.equals(Enchantment.PROTECTION_FALL))
+                    {
+                        itemInHand.addUnsafeEnchantment(ench, level);
+                    }
                 }
             }
             return true;

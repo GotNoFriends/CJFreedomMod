@@ -67,7 +67,7 @@ public class Command_cage extends TFM_Command
             if ("off".equals(args[1]))
             {
                 TFM_Util.adminAction(sender.getName(), "Uncaging " + player.getName(), true);
-BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.GREEN + sender.getName() + " Has Uncaged " + player.getName(), 60);
+                BarAPI.setMessage(ChatColor.BOLD + "" + ChatColor.GREEN + sender.getName() + " Has Uncaged " + player.getName(), 60);
                 playerdata.setCaged(false);
                 playerdata.regenerateHistory();
                 playerdata.clearHistory();

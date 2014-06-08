@@ -17,10 +17,10 @@ public class Command_potato extends CJFM_Command
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         Random rand = new Random();
-		
-		String message = ChatColor.YELLOW + "It is dangerous to go alone. Here, take this!\n"
-		+ ChatColor.RED + "** potato +1 **\n"
-		+ ChatColor.GREEN + "" + ChatColor.ITALIC + "Use it wisely. #" + rand.nextInt(10000);
+
+        String message = ChatColor.YELLOW + "It is dangerous to go alone. Here, take this!\n"
+                + ChatColor.RED + "** potato +1 **\n"
+                + ChatColor.GREEN + "" + ChatColor.ITALIC + "Use it wisely. #" + rand.nextInt(10000);
 
         for (Player player : server.getOnlinePlayers())
         {

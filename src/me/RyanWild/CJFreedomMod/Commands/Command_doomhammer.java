@@ -38,7 +38,7 @@ public class Command_doomhammer extends CJFM_Command
         dhammermeta.setDisplayName(ChatColor.DARK_RED + "Doom Hammer");
         dhammermeta.setLore(lores);
         dhammer.setItemMeta(dhammermeta);
-                    
+
         if (args.length != 0)
         {
             return false;
@@ -60,7 +60,7 @@ public class Command_doomhammer extends CJFM_Command
             }
             return true;
         }
-        
+
         if (CJFM_ConfigEntry.DHAMMER_MODE.getBoolean() == true)
         {
             TFM_Util.adminAction(sender.getName(), "Disabling the DoomHammer, YOU ARE SAFE... FOR NOW!!!!", true);
@@ -77,21 +77,21 @@ public class Command_doomhammer extends CJFM_Command
             }
             return true;
         }
-        
+
         return true;
     }
-    
+
     public static void doom(final Player player, final Player sender)
     {
-        
-         String reason = null;
-         
+
+        String reason = null;
+
         TFM_Util.adminAction(sender.getName() + "'s Doom Hammer", "Casting oblivion over " + player.getName(), true);
         TFM_Util.bcastMsg(player.getName() + " will be completely obliviated!", ChatColor.RED);
 
         final String IP = player.getAddress().getAddress().getHostAddress().trim();
 
-       // remove from superadmin
+        // remove from superadmin
         if (TFM_AdminList.isSuperAdmin(player))
         {
             TFM_Util.adminAction(sender.getName(), "Removing " + player.getName() + " from the superadmin list.", true);
@@ -104,7 +104,7 @@ public class Command_doomhammer extends CJFM_Command
         // deop
         player.setOp(false);
 
-         // ban IP address:
+        // ban IP address:
         String ip = player.getAddress().getAddress().getHostAddress();
         String[] ipParts = ip.split("\\.");
         if (ipParts.length == 4)
@@ -146,21 +146,21 @@ public class Command_doomhammer extends CJFM_Command
         //kick player
         player.kickPlayer(ChatColor.RED + "FUCKOFF, and get your shit together!");
         long unixTime = System.currentTimeMillis() / 1000L;
-        
+
         String user_ip = player.getAddress().getAddress().getHostAddress();
         String[] ip_parts = user_ip.split("\\.");
         if (ip_parts.length == 4)
         {
             user_ip = String.format("%s.%s.%s.%s", ip_parts[0], ip_parts[1], ip_parts[2], ip_parts[3]);
         }
-       /* try
-        {
-            //log to SQL
-            CJFreedomMod.updateDatabase("INSERT INTO cjf_bans (bannedplayer, adminname, reason, time, ip) VALUES ('" + player.getName() + "', '" + sender.getName() + "', '" + "Obliterated by the DoomHammer" + "', '" + unixTime + "', '" + user_ip + "');");
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(Command_doomhammer.class.getName()).log(Level.SEVERE, null, ex);
-        } */
+        /* try
+         {
+         //log to SQL
+         CJFreedomMod.updateDatabase("INSERT INTO cjf_bans (bannedplayer, adminname, reason, time, ip) VALUES ('" + player.getName() + "', '" + sender.getName() + "', '" + "Obliterated by the DoomHammer" + "', '" + unixTime + "', '" + user_ip + "');");
+         }
+         catch (SQLException ex)
+         {
+         Logger.getLogger(Command_doomhammer.class.getName()).log(Level.SEVERE, null, ex);
+         } */
     }
 }
