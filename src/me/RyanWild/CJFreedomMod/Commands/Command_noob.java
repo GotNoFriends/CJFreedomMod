@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package me.RyanWild.CJFreedomMod.Commands;
 
 import java.util.logging.Level;
@@ -46,7 +40,7 @@ public class Command_noob extends CJFM_Command
             playerMsg(ex.getMessage(), ChatColor.RED);
             return true;
         }
-        
+
         // strike with lightning effect:
         final Location targetPos = p.getLocation();
         for (int x = -1; x <= 1; x++)
@@ -57,7 +51,7 @@ public class Command_noob extends CJFM_Command
                 targetPos.getWorld().strikeLightning(strike_pos);
             }
         }
-        TFM_BanManager.getInstance().addUuidBan(
+      //  TFM_BanManager.getInstance().addUuidBan(Player);
         return true;
     }
 
